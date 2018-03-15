@@ -1,3 +1,4 @@
+//@flow
 import React from 'react';
 import Sidebar from 'grommet/components/Sidebar';
 import Box from 'grommet/components/Box';

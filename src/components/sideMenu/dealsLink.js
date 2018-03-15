@@ -1,3 +1,4 @@
+//@flow
 import React from 'react';
 import Anchor from 'grommet/components/Anchor';
 import {Link} from 'react-router-dom';
