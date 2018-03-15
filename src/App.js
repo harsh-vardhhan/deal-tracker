@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Header from 'grommet/components/Header';
 import Title from 'grommet/components/Title';
 import Split from 'grommet/components/Split';
-import SideMenu from './components/sideMenu';
+import SideMenu from './components/sideMenu/sideMenu';
 import Deals from './components/deals';
 import Customers from './components/customers';
 
