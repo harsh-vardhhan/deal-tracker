@@ -15,7 +15,7 @@ type TypeDealForm = {
     setDealName: (string) => void,
     setDealAmount: (number) => void,
     setDealStage: (number) => void
-}
+};
 
 type TypeName = {
     target: {
@@ -25,6 +25,12 @@ type TypeName = {
 
 type TypeAmount = {
     target: {
+        value: number
+    }
+};
+
+type TypeStage = {
+    option: {
         value: number
     }
 };
@@ -56,7 +62,7 @@ const DealsForm = ({deal, setDealName, setDealAmount, setDealStage}: TypeDealFor
                     placeHolder='None'
                     options={stages}
                     value={deal.stage}
-                    onChange={(_stage) => setDealStage(_stage.option.value)}
+                    onChange={(_stage: TypeStage) => setDealStage(_stage.option.value)}
                 />
             </FormField>
         </Box>
