@@ -1,3 +1,4 @@
+//@flow
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Split from 'grommet/components/Split';
@@ -6,7 +7,7 @@ import SideMenu from './../components/sideMenu/sideMenu';
 import Deals from './../components/deals';
 import Customers from './../components/customers';
 
-class App extends Component {
+class App extends Component<{}> {
     render() {
         return (
             <Router>
