@@ -19,7 +19,7 @@ const DealsForm = ({stage}: TypeDealForm) => {
             <h3>{'Form'}</h3>
             <FormField>
                 <TextInput
-                    placeHolder='Name'
+                    placeHolder='Deal Name'
                 />
             </FormField>
             <FormField>
