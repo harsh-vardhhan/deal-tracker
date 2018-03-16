@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Split from 'grommet/components/Split';
+import Box from 'grommet/components/Box';
 import AppHeader from './../components/appHeader';
 import SideMenu from './../components/sideMenu/sideMenu';
 import Deals from './../components/deals';
@@ -13,7 +14,9 @@ class App extends Component<{}> {
             <Router>
                 <div className='App'>
                     <AppHeader/>
-                    <Split>
+                    <Split
+                        fixed={false}
+                    >
                         <SideMenu/>
                         <Switch>
                             <Route
@@ -25,6 +28,11 @@ class App extends Component<{}> {
                                 component={Customers}
                             />
                         </Switch>
+                        <Box
+                            justify='center'
+                            align='center'
+                            pad='medium'
+                        />
                     </Split>
                 </div>
             </Router>

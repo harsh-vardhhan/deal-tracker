@@ -14,6 +14,8 @@ declare module 'grommet/components/Accordion' {
     onActive?: Function,
     openMulti?: boolean
   }
+
+  //$FlowFixMe
   declare class Accordion extends React$Component {
     props: Grommet$AccordionProps;
   }
