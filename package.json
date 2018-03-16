@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-eslint": "^8.2.2",
     "flow-bin": "^0.68.0",
     "grommet": "^1.10.1",
     "react": "^16.2.0",

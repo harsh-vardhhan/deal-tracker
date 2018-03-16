@@ -2,14 +2,18 @@
 import React from 'react';
 import Split from 'grommet/components/Split';
 import ActionButtons from './actionButton';
-import Form from './form';
+import DealsForm from './dealsForm';
 
-const Deals = () => (
+type TypeDeals = {
+    stage: number
+};
+
+const Deals = ({stage}: TypeDeals) => (
     <Split
         fixed={false}
     >
         <ActionButtons/>
-        <Form/>
+        <DealsForm stage={stage}/>
     </Split>
 );
 

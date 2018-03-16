@@ -5,11 +5,25 @@ import Split from 'grommet/components/Split';
 import Box from 'grommet/components/Box';
 import AppHeader from './../components/appHeader';
 import SideMenu from './../components/sideMenu/sideMenu';
-import Deals from './../components/deals';
-import Customers from './../components/customers';
+import Deals from './../components/deals/deals';
+import Customers from './../components/customers/customers';
 
-class App extends Component<{}> {
+type Props = {};
+
+type State = {
+    stage: number
+};
+
+class App extends Component<Props, State> {
+    constructor() {
+        super();
+        this.state = {
+            stage: 1
+        };
+    }
+
     render() {
+        const {stage} = this.state;
         return (
             <Router>
                 <div className='App'>
@@ -21,7 +35,7 @@ class App extends Component<{}> {
                         <Switch>
                             <Route
                                 path='/Deals'
-                                component={Deals}
+                                component={() => <Deals stage={stage}/>}
                             />
                             <Route
                                 path='/Customers'
