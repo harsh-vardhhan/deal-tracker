@@ -11,19 +11,44 @@ import Customers from './../components/customers/customers';
 type Props = {};
 
 type State = {
-    stage: number
+    deal: {
+        name: string,
+        amount: number,
+        stage: number
+    }
 };
 
 class App extends Component<Props, State> {
     constructor() {
         super();
         this.state = {
-            stage: 1
+            deal: {
+                name: '',
+                amount: 1,
+                stage: 1
+            }
         };
     }
 
+    setDealName = (name: string) => this.setState({
+        deal: {...this.state.deal, name}
+    });
+
+    setDealAmount = (amount: number) => this.setState({
+        deal: {...this.state.deal, amount}
+    });
+
+    setDealStage = (stage: number) => this.setState({
+        deal: {...this.state.deal, stage}
+    });
+
     render() {
-        const {stage} = this.state;
+        const {deal} = this.state;
+        const {
+            setDealName,
+            setDealAmount,
+            setDealStage
+        } = this;
         return (
             <Router>
                 <div className='App'>
@@ -35,7 +60,14 @@ class App extends Component<Props, State> {
                         <Switch>
                             <Route
                                 path='/Deals'
-                                component={() => <Deals stage={stage}/>}
+                                component={() => (
+                                    <Deals
+                                        deal={deal}
+                                        setDealName={setDealName}
+                                        setDealAmount={setDealAmount}
+                                        setDealStage={setDealStage}
+                                    />
+                                )}
                             />
                             <Route
                                 path='/Customers'

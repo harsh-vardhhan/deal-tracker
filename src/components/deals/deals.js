@@ -5,15 +5,27 @@ import ActionButtons from './actionButton';
 import DealsForm from './dealsForm';
 
 type TypeDeals = {
-    stage: number
+    deal: {
+        name: string,
+        amount: number,
+        stage: number
+    },
+    setDealName: (string) => void,
+    setDealAmount: (number) => void,
+    setDealStage: (number) => void
 };
 
-const Deals = ({stage}: TypeDeals) => (
+const Deals = ({deal, setDealName, setDealAmount, setDealStage}: TypeDeals) => (
     <Split
         fixed={false}
     >
         <ActionButtons/>
-        <DealsForm stage={stage}/>
+        <DealsForm
+            deal={deal}
+            setDealName={setDealName}
+            setDealAmount={setDealAmount}
+            setDealStage={setDealStage}
+        />
     </Split>
 );
 
