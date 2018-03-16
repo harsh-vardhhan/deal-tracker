@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Split from 'grommet/components/Split';
 import Box from 'grommet/components/Box';
-import AppHeader from './../components/appHeader';
+import AppHeader from './../components/appHeader/appHeader';
 import SideMenu from './../components/sideMenu/sideMenu';
 import Deals from './../components/deals/deals';
 import Customers from './../components/customers/customers';
@@ -44,46 +44,54 @@ class App extends Component<Props, State> {
 
     render() {
         const {deal} = this.state;
-        const {
-            setDealName,
-            setDealAmount,
-            setDealStage
-        } = this;
         return (
             <Router>
                 <div className='App'>
                     <AppHeader/>
-                    <Split
-                        fixed={false}
-                    >
+                    <Split fixed={false}>
                         <SideMenu/>
                         <Switch>
-                            <Route
-                                path='/Deals'
-                                component={() => (
-                                    <Deals
-                                        deal={deal}
-                                        setDealName={setDealName}
-                                        setDealAmount={setDealAmount}
-                                        setDealStage={setDealStage}
-                                    />
-                                )}
+                            <DealRoute
+                                deal={deal}
+                                {...this}
                             />
-                            <Route
-                                path='/Customers'
-                                component={Customers}
-                            />
+                            <CustomerRoute/>
                         </Switch>
-                        <Box
-                            justify='center'
-                            align='center'
-                            pad='medium'
-                        />
+                        <RightBlock/>
                     </Split>
                 </div>
             </Router>
         );
     }
 }
+
+const RightBlock = () => (
+    <Box
+        justify='center'
+        align='center'
+        pad='medium'
+    />
+);
+
+const CustomerRoute = () => (
+    <Route
+        path='/Customers'
+        component={Customers}
+    />
+);
+
+const DealRoute = ({deal, setDealName, setDealAmount, setDealStage}) => (
+    <Route
+        path='/Deals'
+        component={() => (
+            <Deals
+                deal={deal}
+                setDealName={setDealName}
+                setDealAmount={setDealAmount}
+                setDealStage={setDealStage}
+            />
+        )}
+    />
+);
 
 export default App;
