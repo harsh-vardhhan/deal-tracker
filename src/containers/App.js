@@ -18,6 +18,8 @@ type State = {
     }
 };
 
+//TODO use React-beautiful-dnd
+
 class App extends Component<Props, State> {
     constructor() {
         super();
