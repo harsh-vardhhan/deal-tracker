@@ -11,11 +11,13 @@ import Deals from './../components/deals/deals';
 import Customers from './../components/customers/customers';
 import {getDeals} from '../actions/deal';
 import type {GET_DEALS_ACTION} from '../types/Action';
+import type {Deals as DealsType} from '../types/Deals';
 
 type Props = {
     actions: {
         getDeals: () => GET_DEALS_ACTION
-    }
+    },
+    deals: DealsType
 };
 
 type State = {
@@ -57,6 +59,7 @@ class App extends Component<Props, State> {
     });
 
     render() {
+        const {deals} = this.props;
         const {deal} = this.state;
         return (
             <Router>
@@ -67,6 +70,7 @@ class App extends Component<Props, State> {
                         <Switch>
                             <DealRoute
                                 deal={deal}
+                                deals={deals}
                                 {...this}
                             />
                             <CustomerRoute/>
@@ -94,12 +98,13 @@ const CustomerRoute = () => (
     />
 );
 
-const DealRoute = ({deal, setDealName, setDealAmount, setDealStage}) => (
+const DealRoute = ({deal, deals, setDealName, setDealAmount, setDealStage}) => (
     <Route
         path='/Deals'
         component={() => (
             <Deals
                 deal={deal}
+                deals={deals}
                 setDealName={setDealName}
                 setDealAmount={setDealAmount}
                 setDealStage={setDealStage}
@@ -107,6 +112,10 @@ const DealRoute = ({deal, setDealName, setDealAmount, setDealStage}) => (
         )}
     />
 );
+
+const mapStateToProps = (state) => ({
+    deals: state.dealReducer
+});
 
 const mapDispatchToProps = (dispatch) => ({
 
@@ -117,6 +126,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(App);
