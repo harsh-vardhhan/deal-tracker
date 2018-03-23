@@ -5,12 +5,14 @@ import TableRow from 'grommet/components/TableRow';
 import type {Deals} from './../../types/Deals';
 
 type DealTableType = {
-    deals: Deals
+    deals: Deals,
+    selectDeal: (number) => void
 };
 
-const DealTable = ({deals}: DealTableType) => (
+const DealTable = ({deals, selectDeal}: DealTableType) => (
     <Table
         selectable={true}
+        onSelect={selectDeal}
     >
         <DealTableHeader/>
         <tbody>

@@ -46,6 +46,11 @@ class App extends Component<Props, State> {
         this.props.actions.getDeals();
     }
 
+    selectDeal = (selectedDeal) => {
+        const {deals} = this.props;
+        this.setState({deal: deals[selectedDeal]});
+    }
+
     setDealName = (name: string) => this.setState({
         deal: {...this.state.deal, name}
     });
@@ -98,13 +103,14 @@ const CustomerRoute = () => (
     />
 );
 
-const DealRoute = ({deal, deals, setDealName, setDealAmount, setDealStage}) => (
+const DealRoute = ({deal, deals, selectDeal, setDealName, setDealAmount, setDealStage}) => (
     <Route
         path='/Deals'
         component={() => (
             <Deals
                 deal={deal}
                 deals={deals}
+                selectDeal={selectDeal}
                 setDealName={setDealName}
                 setDealAmount={setDealAmount}
                 setDealStage={setDealStage}
