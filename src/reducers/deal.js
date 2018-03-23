@@ -1,5 +1,5 @@
 //@flow
-import {GET_DEALS} from '../constants/deals';
+import {GET_DEALS, ADD_DEAL} from '../constants/deals';
 
 export const dealReducer = (
 
@@ -9,6 +9,8 @@ export const dealReducer = (
     switch (action.type) {
     case GET_DEALS:
         return action.deals;
+    case ADD_DEAL:
+        return [...state, action.deal];
     default:
         return state;
     }

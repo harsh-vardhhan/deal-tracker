@@ -3,7 +3,11 @@ import React from 'react';
 import Button from 'grommet/components/Button';
 import Box from 'grommet/components/Box';
 
-const ActionButtons = () => (
+type ActionButtonsType = {
+    addDealAction: () => void
+};
+
+const ActionButtons = ({addDealAction}: ActionButtonsType) => (
     <Box
         pad='medium'
         direction='row'
@@ -11,6 +15,7 @@ const ActionButtons = () => (
         <Button
             label='Add'
             href='#'
+            onClick={addDealAction}
         />
         <Button
             label='Delete'

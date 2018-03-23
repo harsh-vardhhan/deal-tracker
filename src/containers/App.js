@@ -9,18 +9,21 @@ import AppHeader from './../components/appHeader/appHeader';
 import SideMenu from './../components/sideMenu/sideMenu';
 import Deals from './../components/deals/deals';
 import Customers from './../components/customers/customers';
-import {getDeals} from '../actions/deal';
-import type {GET_DEALS_ACTION} from '../types/Action';
+import {getDeals, addDeal} from '../actions/deal';
+import type {GET_DEALS_ACTION, ADD_DEALS_ACTION} from '../types/Action';
 import type {Deals as DealsType} from '../types/Deals';
+import type {Deal as DealType} from '../types/Deal';
 
 type Props = {
     actions: {
-        getDeals: () => GET_DEALS_ACTION
+        getDeals: () => GET_DEALS_ACTION,
+        addDeal: (DealType) => ADD_DEALS_ACTION
     },
     deals: DealsType
 };
 
 type State = {
+    dealRow: number,
     deal: {
         name: string,
         amount: number,
@@ -34,6 +37,7 @@ class App extends Component<Props, State> {
     constructor() {
         super();
         this.state = {
+            dealRow: 0,
             deal: {
                 name: '',
                 amount: 1,
@@ -46,9 +50,18 @@ class App extends Component<Props, State> {
         this.props.actions.getDeals();
     }
 
+    addDealAction = () => {
+        const {name, amount, stage} = this.state.deal;
+        this.setState({dealRow: -1});
+        this.props.actions.addDeal({name, amount, stage});
+    }
+
     selectDeal = (selectedDeal) => {
         const {deals} = this.props;
-        this.setState({deal: deals[selectedDeal]});
+        this.setState({
+            dealRow: selectedDeal,
+            deal: deals[selectedDeal]
+        });
     }
 
     setDealName = (name: string) => this.setState({
@@ -65,7 +78,7 @@ class App extends Component<Props, State> {
 
     render() {
         const {deals} = this.props;
-        const {deal} = this.state;
+        const {deal, dealRow} = this.state;
         return (
             <Router>
                 <div className='App'>
@@ -76,6 +89,7 @@ class App extends Component<Props, State> {
                             <DealRoute
                                 deal={deal}
                                 deals={deals}
+                                dealRow={dealRow}
                                 {...this}
                             />
                             <CustomerRoute/>
@@ -103,13 +117,15 @@ const CustomerRoute = () => (
     />
 );
 
-const DealRoute = ({deal, deals, selectDeal, setDealName, setDealAmount, setDealStage}) => (
+const DealRoute = ({deal, deals, dealRow, addDealAction, selectDeal, setDealName, setDealAmount, setDealStage}) => (
     <Route
         path='/Deals'
         component={() => (
             <Deals
                 deal={deal}
                 deals={deals}
+                dealRow={dealRow}
+                addDealAction={addDealAction}
                 selectDeal={selectDeal}
                 setDealName={setDealName}
                 setDealAmount={setDealAmount}
@@ -127,7 +143,8 @@ const mapDispatchToProps = (dispatch) => ({
 
     //$FlowFixMe
     actions: bindActionCreators({
-        getDeals
+        getDeals,
+        addDeal
     }, dispatch)
 });
 

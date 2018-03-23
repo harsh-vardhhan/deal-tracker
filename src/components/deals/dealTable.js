@@ -6,13 +6,15 @@ import type {Deals} from './../../types/Deals';
 
 type DealTableType = {
     deals: Deals,
+    dealRow: number,
     selectDeal: (number) => void
 };
 
-const DealTable = ({deals, selectDeal}: DealTableType) => (
+const DealTable = ({deals, dealRow, selectDeal}: DealTableType) => (
     <Table
         selectable={true}
         onSelect={selectDeal}
+        selected={dealRow}
     >
         <DealTableHeader/>
         <tbody>
