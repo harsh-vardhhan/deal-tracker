@@ -3,16 +3,19 @@ export const dealsMock = [
     {
         id: 1,
         name: 'Discount on Broadband',
-        price: 12.45
+        amount: 12.45,
+        stage: 1
     },
     {
         id: 2,
         name: 'Discount on Telephone',
-        price: 32.75
+        amount: 32.75,
+        stage: 3
     },
     {
         id: 3,
         name: 'Discount on Landline',
-        price: 16.25
+        amount: 16.25,
+        stage: 2
     }
 ];

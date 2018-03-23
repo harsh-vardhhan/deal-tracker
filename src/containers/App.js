@@ -1,14 +1,22 @@
 //@flow
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import Split from 'grommet/components/Split';
 import Box from 'grommet/components/Box';
 import AppHeader from './../components/appHeader/appHeader';
 import SideMenu from './../components/sideMenu/sideMenu';
 import Deals from './../components/deals/deals';
 import Customers from './../components/customers/customers';
+import {getDeals} from '../actions/deal';
+import type {GET_DEALS_ACTION} from '../types/Action';
 
-type Props = {};
+type Props = {
+    actions: {
+        getDeals: () => GET_DEALS_ACTION
+    }
+};
 
 type State = {
     deal: {
@@ -30,6 +38,10 @@ class App extends Component<Props, State> {
                 stage: 1
             }
         };
+    }
+
+    componentDidMount() {
+        this.props.actions.getDeals();
     }
 
     setDealName = (name: string) => this.setState({
@@ -96,4 +108,15 @@ const DealRoute = ({deal, setDealName, setDealAmount, setDealStage}) => (
     />
 );
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+
+    //$FlowFixMe
+    actions: bindActionCreators({
+        getDeals
+    }, dispatch)
+});
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(App);
