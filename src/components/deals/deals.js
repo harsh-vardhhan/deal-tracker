@@ -16,13 +16,14 @@ type TypeDeals = {
     },
     deals: DealsType,
     addDealAction : () => void,
+    deleteDealAction: () => void,
     selectDeal: (number) => void,
     setDealName: (string) => void,
     setDealAmount: (number) => void,
     setDealStage: (number) => void
 };
 
-const Deals = ({deal, deals, dealRow, addDealAction, selectDeal, setDealName, setDealAmount, setDealStage}: TypeDeals) => (
+const Deals = ({deal, deals, dealRow, addDealAction, deleteDealAction, selectDeal, setDealName, setDealAmount, setDealStage}: TypeDeals) => (
     <Split
         fixed={false}
     >
@@ -31,7 +32,10 @@ const Deals = ({deal, deals, dealRow, addDealAction, selectDeal, setDealName, se
             align='center'
             pad='medium'
         >
-            <ActionButtons addDealAction={addDealAction}/>
+            <ActionButtons
+                addDealAction={addDealAction}
+                deleteDealAction={deleteDealAction}
+            />
             <DealTable
                 deals={deals}
                 dealRow={dealRow}

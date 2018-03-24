@@ -4,10 +4,11 @@ import Button from 'grommet/components/Button';
 import Box from 'grommet/components/Box';
 
 type ActionButtonsType = {
-    addDealAction: () => void
+    addDealAction: () => void,
+    deleteDealAction: () => void
 };
 
-const ActionButtons = ({addDealAction}: ActionButtonsType) => (
+const ActionButtons = ({addDealAction, deleteDealAction}: ActionButtonsType) => (
     <Box
         pad='medium'
         direction='row'
@@ -20,6 +21,7 @@ const ActionButtons = ({addDealAction}: ActionButtonsType) => (
         <Button
             label='Delete'
             href='#'
+            onClick={deleteDealAction}
         />
         <Button
             label='Save'

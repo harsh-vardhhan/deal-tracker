@@ -7,17 +7,18 @@ import Split from 'grommet/components/Split';
 import Box from 'grommet/components/Box';
 import AppHeader from './../components/appHeader/appHeader';
 import SideMenu from './../components/sideMenu/sideMenu';
-import Deals from './../components/deals/deals';
+import DealRoute from './../components/deals/dealRoute';
 import Customers from './../components/customers/customers';
-import {getDeals, addDeal} from '../actions/deal';
-import type {GET_DEALS_ACTION, ADD_DEALS_ACTION} from '../types/Action';
+import {getDeals, addDeal, deleteDeal} from '../actions/deal';
+import type {GET_DEALS_ACTION, ADD_DEALS_ACTION, DELETE_DEAL_ACTION} from '../types/Action';
 import type {Deals as DealsType} from '../types/Deals';
 import type {Deal as DealType} from '../types/Deal';
 
 type Props = {
     actions: {
         getDeals: () => GET_DEALS_ACTION,
-        addDeal: (DealType) => ADD_DEALS_ACTION
+        addDeal: (DealType) => ADD_DEALS_ACTION,
+        deleteDeal: (number) => DELETE_DEAL_ACTION
     },
     deals: DealsType
 };
@@ -56,7 +57,12 @@ class App extends Component<Props, State> {
         this.props.actions.addDeal({name, amount, stage});
     }
 
-    selectDeal = (selectedDeal) => {
+    deleteDealAction = () => {
+        const {dealRow} = this.state;
+        this.props.actions.deleteDeal(dealRow);
+    }
+
+    selectDeal = (selectedDeal: number) => {
         const {deals} = this.props;
         this.setState({
             dealRow: selectedDeal,
@@ -117,24 +123,6 @@ const CustomerRoute = () => (
     />
 );
 
-const DealRoute = ({deal, deals, dealRow, addDealAction, selectDeal, setDealName, setDealAmount, setDealStage}) => (
-    <Route
-        path='/Deals'
-        component={() => (
-            <Deals
-                deal={deal}
-                deals={deals}
-                dealRow={dealRow}
-                addDealAction={addDealAction}
-                selectDeal={selectDeal}
-                setDealName={setDealName}
-                setDealAmount={setDealAmount}
-                setDealStage={setDealStage}
-            />
-        )}
-    />
-);
-
 const mapStateToProps = (state) => ({
     deals: state.dealReducer
 });
@@ -144,7 +132,8 @@ const mapDispatchToProps = (dispatch) => ({
     //$FlowFixMe
     actions: bindActionCreators({
         getDeals,
-        addDeal
+        addDeal,
+        deleteDeal
     }, dispatch)
 });
 

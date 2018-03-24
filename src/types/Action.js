@@ -11,3 +11,8 @@ export type ADD_DEALS_ACTION = {|
     type: 'ADD_DEALS',
     deal: Deal
 |}
+
+export type DELETE_DEAL_ACTION = {|
+    type: 'DELETE_DEAL',
+    dealItem: number
+|}
