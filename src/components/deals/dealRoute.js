@@ -14,6 +14,7 @@ type TypeDealRoute = {
     },
     addDealAction: () => void,
     deleteDealAction: () => void,
+    editDealAction: () => void,
     selectDeal: (number) => void,
     setDealName: (string) => void,
     setDealAmount: (number) => void,
@@ -26,6 +27,7 @@ const DealRoute = ({
     dealRow,
     addDealAction,
     deleteDealAction,
+    editDealAction,
     selectDeal,
     setDealName,
     setDealAmount,
@@ -40,6 +42,7 @@ const DealRoute = ({
                     dealRow={dealRow}
                     addDealAction={addDealAction}
                     deleteDealAction={deleteDealAction}
+                    editDealAction={editDealAction}
                     selectDeal={selectDeal}
                     setDealName={setDealName}
                     setDealAmount={setDealAmount}

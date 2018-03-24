@@ -17,38 +17,52 @@ type TypeDeals = {
     deals: DealsType,
     addDealAction : () => void,
     deleteDealAction: () => void,
+    editDealAction: () => void,
     selectDeal: (number) => void,
     setDealName: (string) => void,
     setDealAmount: (number) => void,
     setDealStage: (number) => void
 };
 
-const Deals = ({deal, deals, dealRow, addDealAction, deleteDealAction, selectDeal, setDealName, setDealAmount, setDealStage}: TypeDeals) => (
-    <Split
-        fixed={false}
-    >
-        <Box
-            justify='center'
-            align='center'
-            pad='medium'
+const Deals = ({
+    deal,
+    deals,
+    dealRow,
+    addDealAction,
+    deleteDealAction,
+    editDealAction,
+    selectDeal,
+    setDealName,
+    setDealAmount,
+    setDealStage}: TypeDeals) => {
+    return (
+        <Split
+            fixed={false}
         >
-            <ActionButtons
-                addDealAction={addDealAction}
-                deleteDealAction={deleteDealAction}
+            <Box
+                justify='center'
+                align='center'
+                pad='medium'
+            >
+                <ActionButtons
+                    addDealAction={addDealAction}
+                    deleteDealAction={deleteDealAction}
+                    editDealAction={editDealAction}
+                />
+                <DealTable
+                    deals={deals}
+                    dealRow={dealRow}
+                    selectDeal={selectDeal}
+                />
+            </Box>
+            <DealsForm
+                deal={deal}
+                setDealName={setDealName}
+                setDealAmount={setDealAmount}
+                setDealStage={setDealStage}
             />
-            <DealTable
-                deals={deals}
-                dealRow={dealRow}
-                selectDeal={selectDeal}
-            />
-        </Box>
-        <DealsForm
-            deal={deal}
-            setDealName={setDealName}
-            setDealAmount={setDealAmount}
-            setDealStage={setDealStage}
-        />
-    </Split>
-);
+        </Split>
+    );
+};
 
 export default Deals;

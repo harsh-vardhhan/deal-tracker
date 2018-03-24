@@ -9,16 +9,18 @@ import AppHeader from './../components/appHeader/appHeader';
 import SideMenu from './../components/sideMenu/sideMenu';
 import DealRoute from './../components/deals/dealRoute';
 import Customers from './../components/customers/customers';
-import {getDeals, addDeal, deleteDeal} from '../actions/deal';
-import type {GET_DEALS_ACTION, ADD_DEALS_ACTION, DELETE_DEAL_ACTION} from '../types/Action';
+import {getDeals, addDeal, deleteDeal, editDeal} from '../actions/deal';
+import type {GET_DEALS_ACTION, ADD_DEALS_ACTION, DELETE_DEAL_ACTION, EDIT_DEAL_ACTION} from '../types/Action';
 import type {Deals as DealsType} from '../types/Deals';
 import type {Deal as DealType} from '../types/Deal';
+import type {State as StateType} from '../types/State';
 
 type Props = {
     actions: {
         getDeals: () => GET_DEALS_ACTION,
         addDeal: (DealType) => ADD_DEALS_ACTION,
-        deleteDeal: (number) => DELETE_DEAL_ACTION
+        deleteDeal: (number) => DELETE_DEAL_ACTION,
+        editDeal: (DealType, number) => EDIT_DEAL_ACTION
     },
     deals: DealsType
 };
@@ -60,6 +62,15 @@ class App extends Component<Props, State> {
     deleteDealAction = () => {
         const {dealRow} = this.state;
         this.props.actions.deleteDeal(dealRow);
+    }
+
+    editDealAction = () => {
+        const {dealRow} = this.state;
+        const {deals} = this.props;
+        const {name, amount, stage} = this.state.deal;
+        if (dealRow < deals.length) {
+            this.props.actions.editDeal({name, amount, stage}, dealRow);
+        }
     }
 
     selectDeal = (selectedDeal: number) => {
@@ -123,7 +134,7 @@ const CustomerRoute = () => (
     />
 );
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: StateType) => ({
     deals: state.dealReducer
 });
 
@@ -133,7 +144,8 @@ const mapDispatchToProps = (dispatch) => ({
     actions: bindActionCreators({
         getDeals,
         addDeal,
-        deleteDeal
+        deleteDeal,
+        editDeal
     }, dispatch)
 });
 
