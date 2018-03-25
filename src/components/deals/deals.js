@@ -1,6 +1,8 @@
 //@flow
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
+import Box from 'grommet/components/Box';
+import Value from 'grommet/components/Value';
 import type {Deals as DealsType} from './../../types/Deals';
 import DealTableRoute from './dealTableRoute';
 import ViewModeButton from './viewModeButton';
@@ -57,11 +59,48 @@ const Deals = ({
                 <Route
                     path='/Deals/DealBoardRoute'
                     component={() => (
-                        <div>{'Board'}</div>
+                        <DealBoard/>
                     )}
                 />
             </Switch>
         </div>
+    );
+};
+
+const Stages = [
+    {value: 0, label: 'Qualifying'},
+    {value: 1, label: 'Developing'},
+    {value: 2, label: 'Proposing'},
+    {value: 3, label: 'Negotiating'},
+    {value: 4, label: 'Closed'}
+];
+
+const DealBoard = () => {
+    return (
+        <Box
+            direction='Column'
+            style={{width: '1000px'}}
+        >
+            {Stages.map((value, i) => {
+                return (
+                    <Box
+                        key={i}
+                        direction='row'
+                        justify='start'
+                        align='center'
+                        pad='small'
+                        margin='small'
+                        size='medium'
+                        colorIndex='neutral-1'
+                    >
+                        <Value
+                            value={value.label}
+                            size='xsmall'
+                        />
+                    </Box>
+                );
+            })}
+        </Box>
     );
 };
 

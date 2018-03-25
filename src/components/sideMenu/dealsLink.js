@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 const DealsLink = () => (
     <Link
-        to={'/Deals'}
+        to={'/Deals/DealTableRoute'}
     >
         {'Deals'}
     </Link>

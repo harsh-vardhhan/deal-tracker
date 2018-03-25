@@ -60,7 +60,7 @@ const DealsForm = ({deal, setDealName, setDealAmount, setDealStage}: TypeDealFor
             <FormField>
                 <Select
                     placeHolder='None'
-                    options={stages}
+                    options={Stages}
                     value={deal.stage}
                     onChange={(_stage: TypeStage) => setDealStage(_stage.option.value)}
                 />
@@ -69,35 +69,12 @@ const DealsForm = ({deal, setDealName, setDealAmount, setDealStage}: TypeDealFor
     );
 };
 
-const stages = [
-    {
-        value: 1,
-        label: 'Appointment Scheduled'
-    },
-    {
-        value: 2,
-        label: 'Qualified To Buy'
-    },
-    {
-        value: 3,
-        label: 'Presentation Scheduled'
-    },
-    {
-        value: 4,
-        label: 'Decision Maker Brought-In'
-    },
-    {
-        value: 5,
-        label: 'Contract Sent'
-    },
-    {
-        value: 6,
-        label: 'Closed Won'
-    },
-    {
-        value: 7,
-        label: 'Closed Lost'
-    }
+const Stages = [
+    {value: 0, label: 'Qualifying'},
+    {value: 1, label: 'Developing'},
+    {value: 2, label: 'Proposing'},
+    {value: 3, label: 'Negotiating'},
+    {value: 4, label: 'Closed'}
 ];
 
 export default DealsForm;
