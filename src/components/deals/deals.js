@@ -1,11 +1,9 @@
 //@flow
 import React from 'react';
-import Split from 'grommet/components/Split';
-import Box from 'grommet/components/Box';
-import ActionButtons from './actionButton';
-import DealsForm from './dealsForm';
-import DealTable from './dealTable';
+import {Route, Switch} from 'react-router-dom';
 import type {Deals as DealsType} from './../../types/Deals';
+import DealTableRoute from './dealTableRoute';
+import ViewModeButton from './viewModeButton';
 
 type TypeDeals = {
     dealRow: number,
@@ -36,32 +34,34 @@ const Deals = ({
     setDealAmount,
     setDealStage}: TypeDeals) => {
     return (
-        <Split
-            fixed={false}
-        >
-            <Box
-                justify='center'
-                align='center'
-                pad='medium'
-            >
-                <ActionButtons
-                    addDealAction={addDealAction}
-                    deleteDealAction={deleteDealAction}
-                    editDealAction={editDealAction}
+        <div>
+            <ViewModeButton/>
+            <Switch>
+                <Route
+                    path='/Deals/DealTableRoute'
+                    component={() => (
+                        <DealTableRoute
+                            deal={deal}
+                            deals={deals}
+                            dealRow={dealRow}
+                            addDealAction={addDealAction}
+                            deleteDealAction={deleteDealAction}
+                            editDealAction={editDealAction}
+                            selectDeal={selectDeal}
+                            setDealName={setDealName}
+                            setDealAmount={setDealAmount}
+                            setDealStage={setDealStage}
+                        />
+                    )}
                 />
-                <DealTable
-                    deals={deals}
-                    dealRow={dealRow}
-                    selectDeal={selectDeal}
+                <Route
+                    path='/Deals/DealBoardRoute'
+                    component={() => (
+                        <div>{'Board'}</div>
+                    )}
                 />
-            </Box>
-            <DealsForm
-                deal={deal}
-                setDealName={setDealName}
-                setDealAmount={setDealAmount}
-                setDealStage={setDealStage}
-            />
-        </Split>
+            </Switch>
+        </div>
     );
 };
 
