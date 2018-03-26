@@ -10,16 +10,10 @@ const ViewModeButton = () => (
         direction='row'
     >
         <Link to={'/Deals/DealTableRoute'}>
-            <Button
-                label='Table'
-                href='#'
-            />
+            <Button label='Table'/>
         </Link>
         <Link to={'/Deals/DealBoardRoute'}>
-            <Button
-                label='Board'
-                href='#'
-            />
+            <Button label='Board'/>
         </Link>
     </Box>
 );

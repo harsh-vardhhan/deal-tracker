@@ -5,7 +5,7 @@ import Value from 'grommet/components/Value';
 
 const DealBoardHeader = () => (
     <Box
-        direction='Column'
+        direction='row'
         style={{width: '1000px'}}
     >
         {Stages.map((value, i) => {

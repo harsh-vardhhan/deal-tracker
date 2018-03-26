@@ -1,20 +1,26 @@
 //@flow
-import React from 'react';
+import React, {Component} from 'react';
 import DealBoardHeader from './dealBoardHeader';
 import DealBoardSpace from './dealBoardSpace';
 import type {Deals} from './../../../types/Deals';
+import HTML5Backend from 'react-dnd-html5-backend';
+import {DragDropContext} from 'react-dnd';
 
-type DealBoardType = {
+type Props = {
     deals: Deals
 };
 
-const DealBoard = ({deals}: DealBoardType) => {
-    return (
-        <div>
-            <DealBoardHeader/>
-            <DealBoardSpace deals={deals}/>
-        </div>
-    );
-};
+class DealBoard extends Component<Props> {
+    render() {
+        return (
+            <div>
+                <DealBoardHeader/>
+                <DealBoardSpace
+                    deals={this.props.deals}
+                />
+            </div>
+        );
+    }
+}
 
-export default DealBoard;
+export default DragDropContext(HTML5Backend)(DealBoard);
