@@ -4,7 +4,7 @@ import {Route, Switch} from 'react-router-dom';
 import type {Deals as DealsType} from './../../types/Deals';
 import DealTableRoute from './dealTableRoute';
 import ViewModeButton from './viewModeButton';
-import DealBoard from './dealBoard';
+import DealBoard from './dealBoard/dealBoard';
 
 type TypeDeals = {
     dealRow: number,
