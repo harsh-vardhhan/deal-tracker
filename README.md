@@ -5,8 +5,8 @@ The application aims at providing sales people a comprehensive of the deals they
 The application uses React, Redux and Flow Type checker
 
 ## Setup
-Clone the project and npm install.
-Copy grommet library from node_modules and move it to src folder.
+1. Clone the project and npm install.
+2. Copy grommet library from node_modules and move it to src folder.
 
 ## Known Issues
 Focus in forms lost after every keystroke.
