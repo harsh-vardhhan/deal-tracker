@@ -11,7 +11,7 @@ export const dealReducer = (
     case GET_DEALS:
         return action.deals;
     case ADD_DEAL:
-        return [...state, {id: Math.random(), ...action.deal}];
+        return [...state, {...action.deal, id: Math.random()}];
     case DELETE_DEAL:
         const dealId = action.dealId;
         return state.filter((value) => value.id !== dealId);
