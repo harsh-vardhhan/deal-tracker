@@ -4,6 +4,7 @@ import Box from 'grommet/components/Box';
 import Value from 'grommet/components/Value';
 import {DragSource} from 'react-dnd';
 import type {Deal} from './../../../types/Deal';
+import ItemTypes from './itemTypes';
 
 type Props = {
     deal: Deal,
@@ -13,7 +14,8 @@ type Props = {
 const dealSource = {
     beginDrag(props) {
         return {
-            value: props.value
+            value: props.value,
+            deal: props.deal
         };
     }
 };
@@ -51,4 +53,4 @@ class DealBoardItem extends Component<Props> {
     }
 }
 
-export default DragSource('deal', dealSource, collect)(DealBoardItem);
+export default DragSource(ItemTypes.DEAL, dealSource, collect)(DealBoardItem);

@@ -1,68 +1,88 @@
 //@flow
-import React from 'react';
+import React, {Component} from 'react';
 import {DropTarget} from 'react-dnd';
 import Box from 'grommet/components/Box';
 import DealBoardItem from './dealBoardItem';
+import ItemTypes from './itemTypes';
 import type {Deals} from './../../../types/Deals';
+import type {Deal as DealType} from './../../../types/Deal';
 
-type DealBoardSpaceType = {
-    deals: Deals
+type Props = {
+    deals: Deals,
+    setDealStage: (number) => void,
+    setDealState: (DealType) => void,
+    connectDropTarget: any
 };
 
-const updatedStage = null;
+let updatedStage = null;
 
 const dealTarget = {
     drop(props, monitor) {
-        if (monitor.getItem().value.Stage !== updatedStage) {
-            monitor.getItem().value.Stage = updatedStage;
-            props.dropDeal(monitor.getItem().value);
-        }
+        props.setDealState({
+            ...monitor.getItem().deal,
+            stage: updatedStage
+        });
     }
 };
 
-const collect = (connect, monitor) => {
-    return {
-        connectDropTarget: connect.dropTarget(),
-        isOver: monitor.isOver(),
-        canDrop: monitor.canDrop()
-    };
-};
+const collect = (connect, monitor) => ({
+    connectDropTarget: connect.dropTarget(),
+    isOver: monitor.isOver(),
+    canDrop: monitor.canDrop()
+});
 
-const DealBoardSpace = ({deals}: DealBoardSpaceType) => (
-    <Box
-        direction='row'
-        style={{width: '1000px'}}
-    >
-        {Stages.map((value, i) => {
-            return (
+class DealBoardSpace extends Component<Props> {
+    render() {
+        const {connectDropTarget} = this.props;
+        return connectDropTarget(
+            <div>
                 <Box
-                    key={i}
-                    direction='column'
-                    justify='start'
-                    align='center'
-                    pad={{vertical: 'small'}}
-                    margin='small'
-                    size='medium'
-                    colorIndex='light-2'
-                    style={{height: 500, overflow: 'auto'}}
+                    direction='row'
+                    style={{width: '1000px'}}
                 >
-                    {deals.map((deal, j) => {
-                        if (deal.stage === value.value) {
-                            return (
-                                <DealBoardItem
-                                    key={j}
-                                    deal={deal}
-                                />
-                            );
-                        } else {
-                            return <div key={j}/>;
-                        }
+                    {Stages.map((value, i) => {
+                        return (
+                            <Box
+                                key={i}
+                                direction='column'
+                                justify='start'
+                                align='center'
+                                pad={{vertical: 'small'}}
+                                margin='small'
+                                size='medium'
+                                colorIndex='light-2'
+                                style={{height: 500, overflow: 'auto'}}
+                                onDrop={() => {
+                                    updatedStage = i;
+                                    return i;
+                                }}
+                            >
+                                {this.props.deals.map((deal, j) => {
+                                    if (deal.stage === value.value) {
+                                        return (
+                                            <DealBoardItem
+                                                key={j}
+                                                deal={deal}
+                                                value={value}
+                                                setDealState={this.props.setDealState}
+                                                onDrop={() => {
+                                                    this.props.setDealStage(i);
+                                                    return i;
+                                                }}
+                                            />
+                                        );
+                                    } else {
+                                        return <div key={j}/>;
+                                    }
+                                })}
+                            </Box>
+                        );
                     })}
                 </Box>
-            );
-        })}
-    </Box>
-);
+            </div>
+        );
+    }
+}
 
 const Stages = [
     {value: 0, label: 'Qualifying'},
@@ -72,4 +92,4 @@ const Stages = [
     {value: 4, label: 'Closed'}
 ];
 
-export default DropTarget('deal', dealTarget, collect)(DealBoardSpace);
+export default DropTarget(ItemTypes.DEAL, dealTarget, collect)(DealBoardSpace);

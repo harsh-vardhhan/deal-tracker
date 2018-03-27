@@ -3,6 +3,7 @@ import React from 'react';
 import {Route} from 'react-router-dom';
 import Deals from './../../components/deals/deals';
 import type {Deals as DealsType} from '../../types/Deals';
+import type {Deal as DealType} from '../../types/Deal';
 
 type TypeDealRoute = {
     dealRow: number,
@@ -18,7 +19,8 @@ type TypeDealRoute = {
     selectDeal: (number) => void,
     setDealName: (string) => void,
     setDealAmount: (number) => void,
-    setDealStage: (number) => void
+    setDealStage: (number) => void,
+    setDealState: (DealType) => void
 };
 
 const DealRoute = ({
@@ -31,7 +33,8 @@ const DealRoute = ({
     selectDeal,
     setDealName,
     setDealAmount,
-    setDealStage}: TypeDealRoute) => {
+    setDealStage,
+    setDealState}: TypeDealRoute) => {
     return (
         <Route
             path='/Deals'
@@ -47,6 +50,7 @@ const DealRoute = ({
                     setDealName={setDealName}
                     setDealAmount={setDealAmount}
                     setDealStage={setDealStage}
+                    setDealState={setDealState}
                 />
             )}
         />

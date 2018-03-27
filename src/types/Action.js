@@ -4,23 +4,25 @@ import type {Deal} from '../types/Deal';
 
 export type GET_DEALS_ACTION = {|
     type: 'GET_DEALS',
-    deals: Deals
+    deals: Deals,
+    dealId: number
 |}
 
 export type ADD_DEALS_ACTION = {|
     type: 'ADD_DEAL',
-    deal: Deal
+    deal: Deal,
+    dealId: number
 |}
 
 export type DELETE_DEAL_ACTION = {|
     type: 'DELETE_DEAL',
-    dealItem: number
+    dealId: number
 |}
 
 export type EDIT_DEAL_ACTION = {|
     type: 'EDIT_DEAL',
     deal: Deal,
-    dealRow: number
+    dealId: number
 |}
 
 export type Action =

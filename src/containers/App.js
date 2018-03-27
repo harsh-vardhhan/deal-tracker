@@ -28,13 +28,12 @@ type Props = {
 type State = {
     dealRow: number,
     deal: {
+        id: number,
         name: string,
         amount: number,
         stage: number
     }
 };
-
-//TODO use React-beautiful-dnd
 
 class App extends Component<Props, State> {
     constructor() {
@@ -42,6 +41,7 @@ class App extends Component<Props, State> {
         this.state = {
             dealRow: 0,
             deal: {
+                id: 0,
                 name: '',
                 amount: 1,
                 stage: 1
@@ -54,22 +54,22 @@ class App extends Component<Props, State> {
     }
 
     addDealAction = () => {
-        const {name, amount, stage} = this.state.deal;
+        const {id, name, amount, stage} = this.state.deal;
         this.setState({dealRow: -1});
-        this.props.actions.addDeal({name, amount, stage});
+        this.props.actions.addDeal({id, name, amount, stage});
     }
 
     deleteDealAction = () => {
-        const {dealRow} = this.state;
-        this.props.actions.deleteDeal(dealRow);
+        const {id} = this.state.deal;
+        this.props.actions.deleteDeal(id);
     }
 
     editDealAction = () => {
         const {dealRow} = this.state;
         const {deals} = this.props;
-        const {name, amount, stage} = this.state.deal;
+        const {id, name, amount, stage} = this.state.deal;
         if (dealRow < deals.length) {
-            this.props.actions.editDeal({name, amount, stage}, dealRow);
+            this.props.actions.editDeal({id, name, amount, stage}, id);
         }
     }
 
@@ -89,9 +89,15 @@ class App extends Component<Props, State> {
         deal: {...this.state.deal, amount}
     });
 
-    setDealStage = (stage: number) => this.setState({
-        deal: {...this.state.deal, stage}
-    });
+    setDealStage = (stage: number) => {
+        this.setState({
+            deal: {...this.state.deal, stage}
+        });
+    }
+
+    setDealState = (deal: DealType) => {
+        this.props.actions.editDeal(deal, deal.id);
+    }
 
     render() {
         const {deals} = this.props;

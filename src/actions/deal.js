@@ -18,16 +18,16 @@ export const addDeal = (deal: Deal) => {
     };
 };
 
-export const deleteDeal = (dealItem: number) => {
+export const deleteDeal = (dealId: number) => {
     //$FlowFixMe
     return async (dispatch) => {
-        dispatch({type: DELETE_DEAL, dealItem});
+        dispatch({type: DELETE_DEAL, dealId});
     };
 };
 
-export const editDeal = (deal: Deal, dealRow: number) => {
+export const editDeal = (deal: Deal, dealId: number) => {
     //$FlowFixMe
     return async (dispatch) => {
-        dispatch({type: EDIT_DEAL, deal, dealRow});
+        dispatch({type: EDIT_DEAL, deal, dealId});
     };
 };

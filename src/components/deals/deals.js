@@ -5,6 +5,7 @@ import type {Deals as DealsType} from './../../types/Deals';
 import DealTableRoute from './dealTableRoute';
 import ViewModeButton from './viewModeButton';
 import DealBoard from './dealBoard/dealBoard';
+import type {Deal as DealType} from '../../types/Deal';
 
 type TypeDeals = {
     dealRow: number,
@@ -20,7 +21,8 @@ type TypeDeals = {
     selectDeal: (number) => void,
     setDealName: (string) => void,
     setDealAmount: (number) => void,
-    setDealStage: (number) => void
+    setDealStage: (number) => void,
+    setDealState: (DealType) => void
 };
 
 const Deals = ({
@@ -33,7 +35,8 @@ const Deals = ({
     selectDeal,
     setDealName,
     setDealAmount,
-    setDealStage}: TypeDeals) => {
+    setDealStage,
+    setDealState}: TypeDeals) => {
     return (
         <div>
             <ViewModeButton/>
@@ -60,6 +63,8 @@ const Deals = ({
                     component={() => (
                         <DealBoard
                             deals={deals}
+                            setDealStage={setDealStage}
+                            setDealState={setDealState}
                         />
                     )}
                 />
