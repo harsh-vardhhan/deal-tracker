@@ -14,6 +14,7 @@ import type {GET_DEALS_ACTION, ADD_DEALS_ACTION, DELETE_DEAL_ACTION, EDIT_DEAL_A
 import type {Deals as DealsType} from '../types/Deals';
 import type {Deal as DealType} from '../types/Deal';
 import type {State as StateType} from '../types/State';
+import type {Dispatch} from '../types/Store';
 
 type Props = {
     actions: {
@@ -144,7 +145,7 @@ const mapStateToProps = (state: StateType) => ({
     deals: state.dealReducer
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
 
     //$FlowFixMe
     actions: bindActionCreators({

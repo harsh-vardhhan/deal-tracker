@@ -4,14 +4,12 @@ import type {Deal} from '../types/Deal';
 
 export type GET_DEALS_ACTION = {|
     type: 'GET_DEALS',
-    deals: Deals,
-    dealId: number
+    deals: Deals
 |}
 
 export type ADD_DEALS_ACTION = {|
     type: 'ADD_DEAL',
-    deal: Deal,
-    dealId: number
+    deal: Deal
 |}
 
 export type DELETE_DEAL_ACTION = {|

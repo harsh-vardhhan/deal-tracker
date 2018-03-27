@@ -18,7 +18,7 @@ export const dealReducer = (
     case EDIT_DEAL:
         const deal = action.deal;
         return state.map((value) => {
-            if (value.id === action.dealId) {
+            if (value.id === deal.id) {
                 return {...value, ...deal};
             }
             return value;
