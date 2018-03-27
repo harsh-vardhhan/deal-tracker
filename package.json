@@ -2,6 +2,7 @@
   "name": "deal-tracker",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://trakbit.github.io/deal-tracker",
   "dependencies": {
     "babel-eslint": "^8.2.2",
     "flow-bin": "^0.68.0",

@@ -51,7 +51,7 @@ class DealBoardSpace extends Component<Props> {
                                 margin='small'
                                 size='medium'
                                 colorIndex='light-2'
-                                style={{height: 500, overflow: 'auto'}}
+                                style={{height: 480, overflow: 'auto'}}
                                 onDrop={() => {
                                     updatedStage = i;
                                     return i;
