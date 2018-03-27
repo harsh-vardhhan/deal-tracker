@@ -6,6 +6,7 @@ The application uses React, Redux and Flow Type checker
 
 ## Setup
 Clone the project and npm install.
+Copy grommet library from node_modules and move it to src folder.
 
 ## Known Issues
 Focus in forms lost after every keystroke.
