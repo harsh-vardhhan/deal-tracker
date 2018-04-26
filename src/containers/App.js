@@ -79,7 +79,7 @@ class App extends Component<Props, State> {
         }
     }
 
-    selectDeal = (selectedDeal: number) => {
+    selectDeal = (selectedDeal) => {
         const {deals} = this.props;
         this.setState({
             dealRow: selectedDeal,
@@ -87,21 +87,21 @@ class App extends Component<Props, State> {
         });
     }
 
-    setDealName = (name: string) => this.setState({
+    setDealName = (name) => this.setState({
         deal: {...this.state.deal, name}
     });
 
-    setDealAmount = (amount: number) => this.setState({
+    setDealAmount = (amount) => this.setState({
         deal: {...this.state.deal, amount}
     });
 
-    setDealStage = (stage: number) => {
+    setDealStage = (stage) => {
         this.setState({
             deal: {...this.state.deal, stage}
         });
     }
 
-    setDealState = (deal: DealType) => {
+    setDealState = (deal) => {
         this.props.actions.editDeal(deal, deal.id);
     }
 
