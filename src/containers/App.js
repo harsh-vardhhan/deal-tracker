@@ -10,7 +10,12 @@ import SideMenu from './../components/sideMenu/sideMenu';
 import DealRoute from './../components/deals/dealRoute';
 import Customers from './../components/customers/customers';
 import {getDeals, addDeal, deleteDeal, editDeal} from '../actions/deal';
-import type {GET_DEALS_ACTION, ADD_DEALS_ACTION, DELETE_DEAL_ACTION, EDIT_DEAL_ACTION} from '../types/Action';
+import type {
+    GET_DEALS_ACTION,
+    ADD_DEALS_ACTION,
+    DELETE_DEAL_ACTION,
+    EDIT_DEAL_ACTION
+} from '../types/Action';
 import type {Deals as DealsType} from '../types/Deals';
 import type {Deal as DealType} from '../types/Deal';
 import type {State as StateType} from '../types/State';
