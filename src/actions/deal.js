@@ -1,5 +1,8 @@
 //@flow
-import {getDealsData} from '../api/deal';
+import {
+    getDealsData,
+    postDealData
+} from '../api/deal';
 import {GET_DEALS, ADD_DEAL, DELETE_DEAL, EDIT_DEAL} from '../constants/deals';
 import type {Deal} from '../types/Deal';
 import type {Dispatch} from 'redux';
@@ -19,6 +22,7 @@ export const getDeals = () => (
 
 export const addDeal = (deal: Deal) => (
     async (dispatch: Dispatch<ADD_DEALS_ACTION>) => {
+        postDealData(deal);
         dispatch({type: ADD_DEAL, deal});
     }
 );
