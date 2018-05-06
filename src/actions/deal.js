@@ -1,5 +1,5 @@
 //@flow
-import {getDealsMock} from '../api/deal';
+import {getDealsData} from '../api/deal';
 import {GET_DEALS, ADD_DEAL, DELETE_DEAL, EDIT_DEAL} from '../constants/deals';
 import type {Deal} from '../types/Deal';
 import type {Dispatch} from 'redux';
@@ -12,7 +12,7 @@ import type {
 
 export const getDeals = () => (
     async (dispatch: Dispatch<GET_DEALS_ACTION>) => {
-        const deals = await getDealsMock();
+        const deals = await getDealsData();
         dispatch({type: GET_DEALS, deals});
     }
 );

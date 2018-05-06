@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://trakbit.github.io/deal-tracker",
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-eslint": "^8.2.2",
     "flow-bin": "^0.68.0",
     "grommet": "^1.10.1",
