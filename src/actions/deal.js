@@ -21,20 +21,20 @@ export const getDeals = () => (
 );
 
 export const addDeal = (deal: Deal) => (
-    async (dispatch: Dispatch<ADD_DEALS_ACTION>) => {
+    (dispatch: Dispatch<ADD_DEALS_ACTION>) => {
         postDealData(deal);
         dispatch({type: ADD_DEAL, deal});
     }
 );
 
 export const deleteDeal = (dealId: number) => (
-    async (dispatch: Dispatch<DELETE_DEAL_ACTION>) => {
+    (dispatch: Dispatch<DELETE_DEAL_ACTION>) => {
         dispatch({type: DELETE_DEAL, dealId});
     }
 );
 
 export const editDeal = (deal: Deal, dealId: number) => (
-    async (dispatch: Dispatch<EDIT_DEAL_ACTION>) => {
+    (dispatch: Dispatch<EDIT_DEAL_ACTION>) => {
         dispatch({type: EDIT_DEAL, deal, dealId});
     }
 );
