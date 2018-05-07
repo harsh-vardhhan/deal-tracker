@@ -1,7 +1,3 @@
 //@flow
-export type Deals = Array<{|
-    id: number,
-    name: string,
-    amount: number,
-    stage: number
-|}>
+import type {Deal} from './Deal';
+export type Deals = Array<Deal>
