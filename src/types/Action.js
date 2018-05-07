@@ -14,7 +14,7 @@ export type ADD_DEALS_ACTION = {|
 
 export type DELETE_DEAL_ACTION = {|
     type: 'DELETE_DEAL',
-    dealId: number
+    deal: Deal
 |}
 
 export type EDIT_DEAL_ACTION = {|

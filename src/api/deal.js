@@ -15,4 +15,8 @@ export const postDealData = (data: Deal) => {
     axios.post(DealUrl, data);
 };
 
+export const deleteDealData = (data: Deal) => {
+    axios.delete(DealUrl, {data});
+};
+
 export const getDealsMock = () => dealsMock;

@@ -1,7 +1,8 @@
 //@flow
 import {
     getDealsData,
-    postDealData
+    postDealData,
+    deleteDealData
 } from '../api/deal';
 import {GET_DEALS, ADD_DEAL, DELETE_DEAL, EDIT_DEAL} from '../constants/deals';
 import type {Deal} from '../types/Deal';
@@ -27,9 +28,10 @@ export const addDeal = (deal: Deal) => (
     }
 );
 
-export const deleteDeal = (dealId: number) => (
+export const deleteDeal = (deal: Deal) => (
     (dispatch: Dispatch<DELETE_DEAL_ACTION>) => {
-        dispatch({type: DELETE_DEAL, dealId});
+        deleteDealData(deal);
+        dispatch({type: DELETE_DEAL, deal});
     }
 );
 

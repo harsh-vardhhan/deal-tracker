@@ -1,6 +1,6 @@
 //@flow
 export type Deal = {|
-    id: number,
+	_id: string,
     name: string,
     amount: number,
     stage: number

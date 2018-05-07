@@ -25,8 +25,8 @@ type Props = {
     actions: {
         getDeals: () => GET_DEALS_ACTION,
         addDeal: (DealType) => ADD_DEALS_ACTION,
-        deleteDeal: (number) => DELETE_DEAL_ACTION,
-        editDeal: (DealType, number) => EDIT_DEAL_ACTION
+        deleteDeal: (DealType) => DELETE_DEAL_ACTION,
+        editDeal: (DealType, string) => EDIT_DEAL_ACTION
     },
     deals: DealsType
 };
@@ -34,7 +34,7 @@ type Props = {
 type State = {
     dealRow: number,
     deal: {
-        id: number,
+        _id: string,
         name: string,
         amount: number,
         stage: number
@@ -47,7 +47,7 @@ class App extends Component<Props, State> {
         this.state = {
             dealRow: 0,
             deal: {
-                id: 0,
+                _id: '',
                 name: '',
                 amount: 1,
                 stage: 1
@@ -60,22 +60,23 @@ class App extends Component<Props, State> {
     }
 
     addDealAction = () => {
-        const {id, name, amount, stage} = this.state.deal;
+        const {name, amount, stage} = this.state.deal;
+        const _id = '';
         this.setState({dealRow: -1});
-        this.props.actions.addDeal({id, name, amount, stage});
+        this.props.actions.addDeal({_id, name, amount, stage});
     }
 
     deleteDealAction = () => {
-        const {id} = this.state.deal;
-        this.props.actions.deleteDeal(id);
+        const {_id, name, amount, stage} = this.state.deal;
+        this.props.actions.deleteDeal({_id, name, amount, stage});
     }
 
     editDealAction = () => {
         const {dealRow} = this.state;
         const {deals} = this.props;
-        const {id, name, amount, stage} = this.state.deal;
+        const {_id, name, amount, stage} = this.state.deal;
         if (dealRow < deals.length) {
-            this.props.actions.editDeal({id, name, amount, stage}, id);
+            this.props.actions.editDeal({_id, name, amount, stage}, _id);
         }
     }
 
@@ -102,7 +103,7 @@ class App extends Component<Props, State> {
     }
 
     setDealState = (deal) => {
-        this.props.actions.editDeal(deal, deal.id);
+        this.props.actions.editDeal(deal, deal._id);
     }
 
     render() {
