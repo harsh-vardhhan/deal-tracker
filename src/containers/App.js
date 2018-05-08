@@ -116,13 +116,21 @@ class App extends Component<Props, State> {
                     <Split fixed={false}>
                         <SideMenu/>
                         <Switch>
-                            <DealRoute
-                                deal={deal}
-                                deals={deals}
-                                dealRow={dealRow}
-                                {...this}
+                            <Route
+                                path={'/Deals'}
+                                component={() => (
+                                    <DealRoute
+                                        deal={deal}
+                                        deals={deals}
+                                        dealRow={dealRow}
+                                        {...this}
+                                    />
+                                )}
                             />
-                            <CustomerRoute/>
+                            <Route
+                                path={'/Customers'}
+                                component={() => <Customers/>}
+                            />
                         </Switch>
                         <RightBlock/>
                     </Split>
@@ -137,13 +145,6 @@ const RightBlock = () => (
         justify='center'
         align='center'
         pad='medium'
-    />
-);
-
-const CustomerRoute = () => (
-    <Route
-        path='/Customers'
-        component={Customers}
     />
 );
 
