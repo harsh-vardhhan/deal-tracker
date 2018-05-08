@@ -2,7 +2,8 @@
 import {
     getDealsData,
     postDealData,
-    deleteDealData
+    deleteDealData,
+    editDealData
 } from '../api/deal';
 import {GET_DEALS, ADD_DEAL, DELETE_DEAL, EDIT_DEAL} from '../constants/deals';
 import type {Deal} from '../types/Deal';
@@ -37,6 +38,7 @@ export const deleteDeal = (deal: Deal) => (
 
 export const editDeal = (deal: Deal, dealId: number) => (
     (dispatch: Dispatch<EDIT_DEAL_ACTION>) => {
+        editDealData(deal);
         dispatch({type: EDIT_DEAL, deal, dealId});
     }
 );

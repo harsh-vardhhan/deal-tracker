@@ -19,4 +19,8 @@ export const deleteDealData = (data: Deal) => {
     axios.delete(DealUrl, {data});
 };
 
+export const editDealData = (data: Deal) => {
+    axios.put(DealUrl, data);
+};
+
 export const getDealsMock = () => dealsMock;
