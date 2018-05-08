@@ -19,8 +19,7 @@ export type DELETE_DEAL_ACTION = {|
 
 export type EDIT_DEAL_ACTION = {|
     type: 'EDIT_DEAL',
-    deal: Deal,
-    dealId: number
+    deal: Deal
 |}
 
 export type Action =

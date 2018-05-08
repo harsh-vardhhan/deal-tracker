@@ -26,7 +26,7 @@ type Props = {
         getDeals: () => GET_DEALS_ACTION,
         addDeal: (DealType) => ADD_DEALS_ACTION,
         deleteDeal: (DealType) => DELETE_DEAL_ACTION,
-        editDeal: (DealType, string) => EDIT_DEAL_ACTION
+        editDeal: (DealType) => EDIT_DEAL_ACTION
     },
     deals: DealsType
 };
@@ -76,7 +76,7 @@ class App extends Component<Props, State> {
         const {deals} = this.props;
         const {_id, name, amount, stage} = this.state.deal;
         if (dealRow < deals.length) {
-            this.props.actions.editDeal({_id, name, amount, stage}, _id);
+            this.props.actions.editDeal({_id, name, amount, stage});
         }
     }
 
@@ -103,7 +103,7 @@ class App extends Component<Props, State> {
     }
 
     setDealState = (deal) => {
-        this.props.actions.editDeal(deal, deal._id);
+        this.props.actions.editDeal(deal);
     }
 
     render() {

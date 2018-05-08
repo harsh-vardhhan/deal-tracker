@@ -36,9 +36,9 @@ export const deleteDeal = (deal: Deal) => (
     }
 );
 
-export const editDeal = (deal: Deal, dealId: number) => (
+export const editDeal = (deal: Deal) => (
     (dispatch: Dispatch<EDIT_DEAL_ACTION>) => {
         editDealData(deal);
-        dispatch({type: EDIT_DEAL, deal, dealId});
+        dispatch({type: EDIT_DEAL, deal});
     }
 );
