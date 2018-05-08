@@ -7,7 +7,7 @@ import Split from 'grommet/components/Split';
 import Box from 'grommet/components/Box';
 import AppHeader from './../components/appHeader/appHeader';
 import SideMenu from './../components/sideMenu/sideMenu';
-import DealRoute from './../components/deals/dealRoute';
+import Deals from './../components/deals/deals';
 import Customers from './../components/customers/customers';
 import {getDeals, addDeal, deleteDeal, editDeal} from '../actions/deal';
 import type {
@@ -119,7 +119,7 @@ class App extends Component<Props, State> {
                             <Route
                                 path={'/Deals'}
                                 component={() => (
-                                    <DealRoute
+                                    <Deals
                                         deal={deal}
                                         deals={deals}
                                         dealRow={dealRow}
