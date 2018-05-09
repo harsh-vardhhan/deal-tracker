@@ -9,12 +9,13 @@ import AppHeader from './../components/appHeader/appHeader';
 import SideMenu from './../components/sideMenu/sideMenu';
 import Deals from './../components/deals/deals';
 import Customers from './../components/customers/customers';
-import {getDeals, addDeal, deleteDeal, editDeal} from '../actions/deal';
+import {getDeals, addDeal, deleteDeal, editDeal, searchDeal} from '../actions/deal';
 import type {
     GET_DEALS_ACTION,
     ADD_DEALS_ACTION,
     DELETE_DEAL_ACTION,
-    EDIT_DEAL_ACTION
+    EDIT_DEAL_ACTION,
+    SEARCH_DEAL_ACTION
 } from '../types/Action';
 import type {Deals as DealsType} from '../types/Deals';
 import type {Deal as DealType} from '../types/Deal';
@@ -26,7 +27,8 @@ type Props = {
         getDeals: () => GET_DEALS_ACTION,
         addDeal: (DealType) => ADD_DEALS_ACTION,
         deleteDeal: (DealType) => DELETE_DEAL_ACTION,
-        editDeal: (DealType) => EDIT_DEAL_ACTION
+        editDeal: (DealType) => EDIT_DEAL_ACTION,
+        searchDeal: (string) => SEARCH_DEAL_ACTION
     },
     deals: DealsType
 };
@@ -110,6 +112,7 @@ class App extends Component<Props, State> {
 
     setDealSearch = async (dealSearch) => {
         await this.setState({dealSearch});
+        this.props.actions.searchDeal(this.state.dealSearch);
     }
 
     render() {
@@ -160,6 +163,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
     //$FlowFixMe
     actions: bindActionCreators({
+        searchDeal,
         getDeals,
         addDeal,
         deleteDeal,

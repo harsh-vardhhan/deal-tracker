@@ -5,15 +5,23 @@ import {
     deleteDealData,
     editDealData
 } from '../api/deal';
-import {GET_DEALS, ADD_DEAL, DELETE_DEAL, EDIT_DEAL} from '../constants/deals';
+import {GET_DEALS, ADD_DEAL, DELETE_DEAL, EDIT_DEAL, SEARCH_DEAL} from '../constants/deals';
 import type {Deal} from '../types/Deal';
 import type {Dispatch} from 'redux';
 import type {
     GET_DEALS_ACTION,
     ADD_DEALS_ACTION,
     DELETE_DEAL_ACTION,
-    EDIT_DEAL_ACTION
+    EDIT_DEAL_ACTION,
+    SEARCH_DEAL_ACTION
 } from '../types/Action';
+
+export const searchDeal = (dealName: string) => (
+    async (dispatch: Dispatch<SEARCH_DEAL_ACTION>) => {
+        const deals = await getDealsData();
+        dispatch({type: SEARCH_DEAL, deals, dealName});
+    }
+);
 
 export const getDeals = () => (
     async (dispatch: Dispatch<GET_DEALS_ACTION>) => {

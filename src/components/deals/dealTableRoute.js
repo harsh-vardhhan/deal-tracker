@@ -67,7 +67,7 @@ const DealTableRoute = ({
                 pad='medium'
             >
                 <Search
-                    placeHolder='Search'
+                    placeHolder='Search Deals'
                     inline={true}
                     value={dealSearch}
                     onDOMChange={(e) => setDealSearch(e.target.value)}

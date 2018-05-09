@@ -22,7 +22,14 @@ export type EDIT_DEAL_ACTION = {|
     deal: Deal
 |}
 
+export type SEARCH_DEAL_ACTION = {|
+    type: 'SEARCH_DEAL',
+    deals: Deals,
+    dealName: string
+|}
+
 export type Action =
+    | SEARCH_DEAL_ACTION
     | GET_DEALS_ACTION
     | ADD_DEALS_ACTION
     | DELETE_DEAL_ACTION
