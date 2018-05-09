@@ -24,7 +24,7 @@ type TypeDeals = {
     setDealAmount: (number) => void,
     setDealStage: (number) => void,
     setDealState: (DealType) => void,
-    setDealSearch: (string) => void
+    setDealSearch: (string) => Promise<any>
 };
 
 const Deals = ({

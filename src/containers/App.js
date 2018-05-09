@@ -108,8 +108,8 @@ class App extends Component<Props, State> {
         this.props.actions.editDeal(deal);
     }
 
-    setDealSearch = (dealSearch) => {
-        this.setState({dealSearch});
+    setDealSearch = async (dealSearch) => {
+        await this.setState({dealSearch});
     }
 
     render() {
