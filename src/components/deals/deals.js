@@ -42,7 +42,7 @@ const Deals = ({
             <ViewModeButton/>
             <Switch>
                 <Route
-                    path='/Deals/DealTableRoute'
+                    path='/Deals/Table'
                     component={() => (
                         <DealTableRoute
                             deal={deal}
@@ -59,7 +59,7 @@ const Deals = ({
                     )}
                 />
                 <Route
-                    path='/Deals/DealBoardRoute'
+                    path='/Deals/Board'
                     component={() => (
                         <DealBoard
                             deals={deals}

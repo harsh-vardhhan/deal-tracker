@@ -9,10 +9,10 @@ const ViewModeButton = () => (
         pad='large'
         direction='row'
     >
-        <Link to={'/Deals/DealTableRoute'}>
+        <Link to={'/Deals/Table'}>
             <Button label='Table'/>
         </Link>
-        <Link to={'/Deals/DealBoardRoute'}>
+        <Link to={'/Deals/Board'}>
             <Button label='Board'/>
         </Link>
     </Box>
