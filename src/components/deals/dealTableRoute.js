@@ -2,13 +2,15 @@
 import React from 'react';
 import Split from 'grommet/components/Split';
 import Box from 'grommet/components/Box';
+import Search from 'grommet/components/Search';
 import ActionButtons from './actionButton';
 import DealsForm from './dealsForm';
 import DealTable from './dealTable';
 import type {Deals as DealsType} from './../../types/Deals';
 
-type DealTableRouteType = {
+type Props = {
     dealRow: number,
+    dealSearch: string,
     deal: {
         name: string,
         amount: number,
@@ -21,7 +23,8 @@ type DealTableRouteType = {
     selectDeal: (number) => void,
     setDealName: (string) => void,
     setDealAmount: (number) => void,
-    setDealStage: (number) => void
+    setDealStage: (number) => void,
+    setDealSearch: (string) => void
 };
 
 const DealTableRoute = ({
@@ -30,11 +33,13 @@ const DealTableRoute = ({
     editDealAction,
     deals,
     dealRow,
+    dealSearch,
     selectDeal,
     deal,
     setDealName,
     setDealAmount,
-    setDealStage}: DealTableRouteType) => {
+    setDealStage,
+    setDealSearch}: Props) => {
     return (
         <Split
             fixed={false}
@@ -44,6 +49,7 @@ const DealTableRoute = ({
                 align='center'
                 pad='medium'
             >
+
                 <ActionButtons
                     addDealAction={addDealAction}
                     deleteDealAction={deleteDealAction}
@@ -55,12 +61,24 @@ const DealTableRoute = ({
                     selectDeal={selectDeal}
                 />
             </Box>
-            <DealsForm
-                deal={deal}
-                setDealName={setDealName}
-                setDealAmount={setDealAmount}
-                setDealStage={setDealStage}
-            />
+            <Box
+                justify='center'
+                align='center'
+                pad='medium'
+            >
+                <Search
+                    placeHolder='Search'
+                    inline={true}
+                    value={dealSearch}
+                    onDOMChange={(e) => setDealSearch(e.target.value)}
+                />
+                <DealsForm
+                    deal={deal}
+                    setDealName={setDealName}
+                    setDealAmount={setDealAmount}
+                    setDealStage={setDealStage}
+                />
+            </Box>
         </Split>
     );
 };

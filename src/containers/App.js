@@ -33,6 +33,7 @@ type Props = {
 
 type State = {
     dealRow: number,
+    dealSearch: string,
     deal: {
         _id: string,
         name: string,
@@ -46,6 +47,7 @@ class App extends Component<Props, State> {
         super();
         this.state = {
             dealRow: 0,
+            dealSearch: '',
             deal: {
                 _id: '',
                 name: '',
@@ -106,9 +108,12 @@ class App extends Component<Props, State> {
         this.props.actions.editDeal(deal);
     }
 
+    setDealSearch = (dealSearch) => {
+        this.setState({dealSearch});
+    }
+
     render() {
         const {deals} = this.props;
-        const {deal, dealRow} = this.state;
         return (
             <Router>
                 <div className='App'>
@@ -120,9 +125,8 @@ class App extends Component<Props, State> {
                                 path={'/Deals'}
                                 component={() => (
                                     <Deals
-                                        deal={deal}
                                         deals={deals}
-                                        dealRow={dealRow}
+                                        {...this.state}
                                         {...this}
                                     />
                                 )}

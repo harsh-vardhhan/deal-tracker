@@ -9,6 +9,7 @@ import type {Deal as DealType} from '../../types/Deal';
 
 type TypeDeals = {
     dealRow: number,
+    dealSearch: string,
     deal: {
         name: string,
         amount: number,
@@ -22,13 +23,15 @@ type TypeDeals = {
     setDealName: (string) => void,
     setDealAmount: (number) => void,
     setDealStage: (number) => void,
-    setDealState: (DealType) => void
+    setDealState: (DealType) => void,
+    setDealSearch: (string) => void
 };
 
 const Deals = ({
     deal,
     deals,
     dealRow,
+    dealSearch,
     addDealAction,
     deleteDealAction,
     editDealAction,
@@ -36,7 +39,8 @@ const Deals = ({
     setDealName,
     setDealAmount,
     setDealStage,
-    setDealState}: TypeDeals) => {
+    setDealState,
+    setDealSearch}: TypeDeals) => {
     return (
         <div>
             <ViewModeButton/>
@@ -48,6 +52,7 @@ const Deals = ({
                             deal={deal}
                             deals={deals}
                             dealRow={dealRow}
+                            dealSearch={dealSearch}
                             addDealAction={addDealAction}
                             deleteDealAction={deleteDealAction}
                             editDealAction={editDealAction}
@@ -55,6 +60,7 @@ const Deals = ({
                             setDealName={setDealName}
                             setDealAmount={setDealAmount}
                             setDealStage={setDealStage}
+                            setDealSearch={setDealSearch}
                         />
                     )}
                 />
