@@ -9,8 +9,9 @@ export const dealReducer = (
 ) => {
     switch (action.type) {
     case REVERSE_DEALS:
-        const oldDeals = action.deals;
-        return oldDeals.slice().reverse();
+        const ascend = action.deals;
+        const descend = ascend.slice().reverse();
+        return descend;
     case SEARCH_DEAL:
         const dealName = action.dealName;
         const deals = action.deals;
@@ -23,10 +24,10 @@ export const dealReducer = (
         const deal = action.deal;
         return state.filter((value) => value._id !== deal._id);
     case EDIT_DEAL:
-        const updatedDeal = action.deal;
+        const editedDeal = action.deal;
         return state.map((value) => {
-            if (value._id === updatedDeal._id) {
-                return {...value, ...updatedDeal};
+            if (value._id === editedDeal._id) {
+                return {...value, ...editedDeal};
             }
             return value;
         });
