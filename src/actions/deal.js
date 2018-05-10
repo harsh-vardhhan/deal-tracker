@@ -5,16 +5,24 @@ import {
     deleteDealData,
     editDealData
 } from '../api/deal';
-import {GET_DEALS, ADD_DEAL, DELETE_DEAL, EDIT_DEAL, SEARCH_DEAL} from '../constants/deals';
+import {GET_DEALS, ADD_DEAL, DELETE_DEAL, EDIT_DEAL, SEARCH_DEAL, REVERSE_DEALS} from '../constants/deals';
 import type {Deal} from '../types/Deal';
+import type {Deals} from '../types/Deals';
 import type {Dispatch} from 'redux';
 import type {
+    REVERSE_DEALS_ACTION,
     GET_DEALS_ACTION,
     ADD_DEALS_ACTION,
     DELETE_DEAL_ACTION,
     EDIT_DEAL_ACTION,
     SEARCH_DEAL_ACTION
 } from '../types/Action';
+
+export const reverseDeals = (deals: Deals) => (
+    async (dispatch: Dispatch<REVERSE_DEALS_ACTION>) => {
+        dispatch({type: REVERSE_DEALS, deals});
+    }
+);
 
 export const searchDeal = (dealName: string) => (
     async (dispatch: Dispatch<SEARCH_DEAL_ACTION>) => {

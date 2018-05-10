@@ -10,7 +10,7 @@ import AppHeader from './../components/appHeader/appHeader';
 import SideMenu from './../components/sideMenu/sideMenu';
 import Deals from './../components/deals/deals';
 import Customers from './../components/customers/customers';
-import {getDeals, addDeal, deleteDeal, editDeal, searchDeal} from '../actions/deal';
+import {getDeals, addDeal, deleteDeal, editDeal, searchDeal, reverseDeals} from '../actions/deal';
 import type {
     GET_DEALS_ACTION,
     ADD_DEALS_ACTION,
@@ -25,6 +25,7 @@ import type {Dispatch} from '../types/Store';
 
 type Props = {
     actions: {
+        reverseDeals: (DealsType) => void,
         getDeals: () => GET_DEALS_ACTION,
         addDeal: (DealType) => ADD_DEALS_ACTION,
         deleteDeal: (DealType) => DELETE_DEAL_ACTION,
@@ -121,6 +122,11 @@ class App extends Component<Props, State> {
     toggleLogin = () => {
         this.setState({loggedIn: !this.state.loggedIn});
     }
+
+    reverseDealsAction = () => {
+        this.props.actions.reverseDeals(this.props.deals);
+    }
+
     render() {
         const {deals} = this.props;
         const {loggedIn} = this.state;
@@ -186,6 +192,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
     //$FlowFixMe
     actions: bindActionCreators({
+        reverseDeals,
         searchDeal,
         getDeals,
         addDeal,

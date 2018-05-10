@@ -7,7 +7,7 @@ import ViewModeButton from './viewModeButton';
 import DealBoard from './dealBoard/dealBoard';
 import type {Deal as DealType} from '../../types/Deal';
 
-type TypeDeals = {
+type Props = {
     dealRow: number,
     dealSearch: string,
     deal: {
@@ -17,6 +17,7 @@ type TypeDeals = {
     },
     deals: DealsType,
     addDealAction : () => void,
+    reverseDealsAction: () => void,
     deleteDealAction: () => void,
     editDealAction: () => void,
     selectDeal: (number) => void,
@@ -33,6 +34,7 @@ const Deals = ({
     dealRow,
     dealSearch,
     addDealAction,
+    reverseDealsAction,
     deleteDealAction,
     editDealAction,
     selectDeal,
@@ -40,7 +42,7 @@ const Deals = ({
     setDealAmount,
     setDealStage,
     setDealState,
-    setDealSearch}: TypeDeals) => {
+    setDealSearch}: Props) => {
     return (
         <div>
             <ViewModeButton/>
@@ -54,6 +56,7 @@ const Deals = ({
                             dealRow={dealRow}
                             dealSearch={dealSearch}
                             addDealAction={addDealAction}
+                            reverseDealsAction={reverseDealsAction}
                             deleteDealAction={deleteDealAction}
                             editDealAction={editDealAction}
                             selectDeal={selectDeal}

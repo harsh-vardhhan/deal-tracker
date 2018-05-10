@@ -17,6 +17,7 @@ type Props = {
         stage: number
     },
     deals: DealsType,
+    reverseDealsAction: () => void,
     addDealAction : () => void,
     deleteDealAction: () => void,
     editDealAction: () => void,
@@ -29,6 +30,7 @@ type Props = {
 
 const DealTableRoute = ({
     addDealAction,
+    reverseDealsAction,
     deleteDealAction,
     editDealAction,
     deals,
@@ -49,7 +51,6 @@ const DealTableRoute = ({
                 align='center'
                 pad='medium'
             >
-
                 <ActionButtons
                     addDealAction={addDealAction}
                     deleteDealAction={deleteDealAction}
@@ -59,6 +60,7 @@ const DealTableRoute = ({
                     deals={deals}
                     dealRow={dealRow}
                     selectDeal={selectDeal}
+                    reverseDealsAction={reverseDealsAction}
                 />
             </Box>
             <Box

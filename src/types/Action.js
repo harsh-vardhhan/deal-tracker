@@ -2,6 +2,11 @@
 import type {Deals} from '../types/Deals';
 import type {Deal} from '../types/Deal';
 
+export type REVERSE_DEALS_ACTION = {|
+    type: 'REVERSE_DEALS',
+    deals: Deals
+|}
+
 export type GET_DEALS_ACTION = {|
     type: 'GET_DEALS',
     deals: Deals
@@ -29,6 +34,7 @@ export type SEARCH_DEAL_ACTION = {|
 |}
 
 export type Action =
+    | REVERSE_DEALS_ACTION
     | SEARCH_DEAL_ACTION
     | GET_DEALS_ACTION
     | ADD_DEALS_ACTION

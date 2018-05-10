@@ -2,21 +2,23 @@
 import React from 'react';
 import Table from 'grommet/components/Table';
 import TableRow from 'grommet/components/TableRow';
+import TableHeader from 'grommet/components/TableHeader';
 import type {Deals} from './../../types/Deals';
 
 type DealTableType = {
     deals: Deals,
     dealRow: number,
-    selectDeal: (number) => void
+    selectDeal: (number) => void,
+    reverseDealsAction: () => void
 };
 
-const DealTable = ({deals, dealRow, selectDeal}: DealTableType) => (
+const DealTable = ({deals, dealRow, selectDeal, reverseDealsAction}: DealTableType) => (
     <Table
         selectable={true}
         onSelect={selectDeal}
         selected={dealRow}
     >
-        <DealTableHeader/>
+        <DealTableHeader reverseDealsAction={reverseDealsAction}/>
         <tbody>
             {deals.map((value, i) => {
                 return (
@@ -31,14 +33,13 @@ const DealTable = ({deals, dealRow, selectDeal}: DealTableType) => (
     </Table>
 );
 
-const DealTableHeader = () => (
-    <thead>
-        <tr>
-            <th>{'Name'}</th>
-            <th>{'Amount($)'}</th>
-            <th>{'Stage'}</th>
-        </tr>
-    </thead>
+const DealTableHeader = ({reverseDealsAction}) => (
+    <TableHeader
+        sortAscending={true}
+        onSort={reverseDealsAction}
+        sortIndex={0}
+        labels={['Name', 'Amount', 'Stage']}
+    />
 );
 
 export default DealTable;

@@ -1,5 +1,5 @@
 //@flow
-import {GET_DEALS, ADD_DEAL, DELETE_DEAL, EDIT_DEAL, SEARCH_DEAL} from '../constants/deals';
+import {GET_DEALS, ADD_DEAL, DELETE_DEAL, EDIT_DEAL, SEARCH_DEAL, REVERSE_DEALS} from '../constants/deals';
 import type {Action} from '../types/Action';
 import type {Deals} from '../types/Deals';
 
@@ -8,6 +8,9 @@ export const dealReducer = (
     action: Action
 ) => {
     switch (action.type) {
+    case REVERSE_DEALS:
+        const oldDeals = action.deals;
+        return oldDeals.slice().reverse();
     case SEARCH_DEAL:
         const dealName = action.dealName;
         const deals = action.deals;
