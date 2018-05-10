@@ -126,16 +126,7 @@ class App extends Component<Props, State> {
         const {loggedIn} = this.state;
         if (loggedIn === false) {
             return (
-                <Router>
-                    <Switch>
-                        <Route
-                            path={'/'}
-                            component={() => (
-                                <LoginPage toggleLogin={this.toggleLogin}/>
-                            )}
-                        />
-                    </Switch>
-                </Router>
+                <LoginPage toggleLogin={this.toggleLogin}/>
             );
         } else {
             return (
