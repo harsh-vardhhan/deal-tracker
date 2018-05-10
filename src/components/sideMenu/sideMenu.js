@@ -7,7 +7,11 @@ import DealsLink from './dealsLink';
 import CustomersLink from './customersLink';
 import SideBarHeader from './sideBarHeader';
 
-const SideMenu = () => (
+type Props = {
+    toggleLogin: () => void
+}
+
+const SideMenu = ({toggleLogin}: Props) => (
     <Sidebar
         size='small'
         colorIndex='neutral-1'
@@ -20,6 +24,8 @@ const SideMenu = () => (
             <Menu primary={true}>
                 <DealsLink/>
                 <CustomersLink/>
+                <br/>
+                <a onClick={toggleLogin}>{'Logout'}</a>
             </Menu>
         </Box>
     </Sidebar>

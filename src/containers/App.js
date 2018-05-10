@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Split from 'grommet/components/Split';
 import Box from 'grommet/components/Box';
+import LoginForm from 'grommet/components/LoginForm';
 import AppHeader from './../components/appHeader/appHeader';
 import SideMenu from './../components/sideMenu/sideMenu';
 import Deals from './../components/deals/deals';
@@ -34,6 +35,7 @@ type Props = {
 };
 
 type State = {
+    loggedIn: bool,
     dealRow: number,
     dealSearch: string,
     deal: {
@@ -48,6 +50,7 @@ class App extends Component<Props, State> {
     constructor() {
         super();
         this.state = {
+            loggedIn: false,
             dealRow: 0,
             dealSearch: '',
             deal: {
@@ -94,11 +97,11 @@ class App extends Component<Props, State> {
 
     setDealName = (name) => this.setState({
         deal: {...this.state.deal, name}
-    });
+    })
 
     setDealAmount = (amount) => this.setState({
         deal: {...this.state.deal, amount}
-    });
+    })
 
     setDealStage = (stage) => {
         this.setState({
@@ -115,37 +118,66 @@ class App extends Component<Props, State> {
         this.props.actions.searchDeal(this.state.dealSearch);
     }
 
+    toggleLogin = () => {
+        this.setState({loggedIn: !this.state.loggedIn});
+    }
     render() {
         const {deals} = this.props;
-        return (
-            <Router>
-                <div className='App'>
-                    <AppHeader/>
-                    <Split fixed={false}>
-                        <SideMenu/>
-                        <Switch>
-                            <Route
-                                path={'/Deals'}
-                                component={() => (
-                                    <Deals
-                                        deals={deals}
-                                        {...this.state}
-                                        {...this}
-                                    />
-                                )}
-                            />
-                            <Route
-                                path={'/Customers'}
-                                component={() => <Customers/>}
-                            />
-                        </Switch>
-                        <RightBlock/>
-                    </Split>
-                </div>
-            </Router>
-        );
+        const {loggedIn} = this.state;
+        if (loggedIn === false) {
+            return (
+                <Router>
+                    <Switch>
+                        <Route
+                            path={'/'}
+                            component={() => (
+                                <LoginPage toggleLogin={this.toggleLogin}/>
+                            )}
+                        />
+                    </Switch>
+                </Router>
+            );
+        } else {
+            return (
+                <Router>
+                    <div className='App'>
+                        <AppHeader/>
+                        <Split fixed={false}>
+                            <SideMenu toggleLogin={this.toggleLogin}/>
+                            <Switch>
+                                <Route
+                                    path={'/Deals'}
+                                    component={() => (
+                                        <Deals
+                                            deals={deals}
+                                            {...this.state}
+                                            {...this}
+                                        />
+                                    )}
+                                />
+                                <Route
+                                    path={'/Customers'}
+                                    component={() => <Customers/>}
+                                />
+                            </Switch>
+                            <RightBlock/>
+                        </Split>
+                    </div>
+                </Router>
+            );
+        }
     }
 }
+
+const LoginPage = ({toggleLogin}) => (
+    <Box
+        colorIndex='light-2'
+        full='vertical'
+        align='center'
+    >
+        <LoginForm onSubmit={toggleLogin}/>
+    </Box>
+);
 
 const RightBlock = () => (
     <Box
