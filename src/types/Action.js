@@ -27,7 +27,13 @@ export type EDIT_DEAL_ACTION = {|
     deal: Deal
 |}
 
+export type EDIT_DEAL_SEARCH_ACTION = {|
+    type: 'EDIT_DEAL_SEARCH',
+    dealSearch: string
+|}
+
 export type Action =
+    | EDIT_DEAL_SEARCH_ACTION
     | REVERSE_DEALS_ACTION
     | GET_DEALS_ACTION
     | ADD_DEALS_ACTION

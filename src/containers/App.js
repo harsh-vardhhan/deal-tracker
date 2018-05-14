@@ -12,11 +12,13 @@ import Deals from './../components/deals/deals';
 import Customers from './../components/customers/customers';
 import {getDeals, addDeal, deleteDeal, editDeal, reverseDeals} from '../actions/deal';
 import {editDealSearch} from '../actions/dealSearch';
+import {filterDeals} from '../selectors/deals';
 import type {
     GET_DEALS_ACTION,
     ADD_DEALS_ACTION,
     DELETE_DEAL_ACTION,
-    EDIT_DEAL_ACTION
+    EDIT_DEAL_ACTION,
+    EDIT_DEAL_SEARCH_ACTION
 } from '../types/Action';
 import type {Deals as DealsType} from '../types/Deals';
 import type {Deal as DealType} from '../types/Deal';
@@ -185,11 +187,8 @@ const RightBlock = () => (
     />
 );
 
-const filterItems = (deals, dealSearch) =>
-    deals.filter((item) => item.name.includes(dealSearch));
-
 const mapStateToProps = (state: StateType) => ({
-    deals: filterItems(state.dealReducer, state.dealSearchReducer),
+    deals: filterDeals(state),
     dealSearch: state.dealSearchReducer
 });
 

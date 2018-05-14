@@ -2,5 +2,6 @@
 import type {Deals} from './Deals';
 
 export type State = {|
-    dealReducer: Deals
+    dealReducer: Deals,
+    dealSearchReducer: string
 |}
