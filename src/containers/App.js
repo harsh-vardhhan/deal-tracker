@@ -14,43 +14,9 @@ import {getDeals, addDeal, deleteDeal, editDeal} from '../actions/deal';
 import {editDealSearch} from '../actions/dealSearch';
 import {toggleDealOrder} from '../actions/dealOrder';
 import {filterDeal} from '../selectors/deals';
-import type {
-    GET_DEALS_ACTION,
-    ADD_DEALS_ACTION,
-    DELETE_DEAL_ACTION,
-    EDIT_DEAL_ACTION,
-    EDIT_DEAL_SEARCH_ACTION,
-    TOGGLE_ORDER_ACTION
-} from '../types/Action';
-import type {Deals as DealsType} from '../types/Deals';
-import type {Deal as DealType} from '../types/Deal';
 import type {State as StateType} from '../types/State';
 import type {Dispatch} from '../types/Store';
-
-type Props = {
-    actions: {
-        reverseDeals: (DealsType) => void,
-        getDeals: () => GET_DEALS_ACTION,
-        addDeal: (DealType) => ADD_DEALS_ACTION,
-        deleteDeal: (DealType) => DELETE_DEAL_ACTION,
-        editDeal: (DealType) => EDIT_DEAL_ACTION,
-        editDealSearch: (string) => EDIT_DEAL_SEARCH_ACTION,
-        toggleDealOrder: () => TOGGLE_ORDER_ACTION
-    },
-    deals: DealsType,
-    dealSearch: string
-};
-
-type State = {
-    loggedIn: bool,
-    dealRow: number,
-    deal: {
-        _id: string,
-        name: string,
-        amount: number,
-        stage: number
-    }
-};
+import type {Props, State} from '../types/App';
 
 class App extends Component<Props, State> {
     constructor() {
