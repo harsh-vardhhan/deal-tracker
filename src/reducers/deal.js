@@ -1,5 +1,5 @@
 //@flow
-import {GET_DEALS, ADD_DEAL, DELETE_DEAL, EDIT_DEAL, SEARCH_DEAL, REVERSE_DEALS} from '../constants/deals';
+import {GET_DEALS, ADD_DEAL, DELETE_DEAL, EDIT_DEAL, REVERSE_DEALS} from '../constants/deals';
 import type {Action} from '../types/Action';
 import type {Deals} from '../types/Deals';
 
@@ -12,10 +12,6 @@ export const dealReducer = (
         const ascend = action.deals;
         const descend = ascend.slice().reverse();
         return descend;
-    case SEARCH_DEAL:
-        const dealName = action.dealName;
-        const deals = action.deals;
-        return deals.filter((value) => value.name.includes(dealName));
     case GET_DEALS:
         return action.deals;
     case ADD_DEAL:

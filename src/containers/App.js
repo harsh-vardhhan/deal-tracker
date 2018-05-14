@@ -10,13 +10,13 @@ import AppHeader from './../components/appHeader/appHeader';
 import SideMenu from './../components/sideMenu/sideMenu';
 import Deals from './../components/deals/deals';
 import Customers from './../components/customers/customers';
-import {getDeals, addDeal, deleteDeal, editDeal, searchDeal, reverseDeals} from '../actions/deal';
+import {getDeals, addDeal, deleteDeal, editDeal, reverseDeals} from '../actions/deal';
+import {editDealSearch} from '../actions/dealSearch';
 import type {
     GET_DEALS_ACTION,
     ADD_DEALS_ACTION,
     DELETE_DEAL_ACTION,
-    EDIT_DEAL_ACTION,
-    SEARCH_DEAL_ACTION
+    EDIT_DEAL_ACTION
 } from '../types/Action';
 import type {Deals as DealsType} from '../types/Deals';
 import type {Deal as DealType} from '../types/Deal';
@@ -30,15 +30,15 @@ type Props = {
         addDeal: (DealType) => ADD_DEALS_ACTION,
         deleteDeal: (DealType) => DELETE_DEAL_ACTION,
         editDeal: (DealType) => EDIT_DEAL_ACTION,
-        searchDeal: (string) => SEARCH_DEAL_ACTION
+        editDealSearch: (string) => EDIT_DEAL_SEARCH_ACTION
     },
-    deals: DealsType
+    deals: DealsType,
+    dealSearch: string
 };
 
 type State = {
     loggedIn: bool,
     dealRow: number,
-    dealSearch: string,
     deal: {
         _id: string,
         name: string,
@@ -53,7 +53,6 @@ class App extends Component<Props, State> {
         this.state = {
             loggedIn: false,
             dealRow: 0,
-            dealSearch: '',
             deal: {
                 _id: '',
                 name: '',
@@ -115,8 +114,9 @@ class App extends Component<Props, State> {
     }
 
     setDealSearch = async (dealSearch) => {
-        await this.setState({dealSearch});
-        this.props.actions.searchDeal(this.state.dealSearch);
+        await this.props.actions.editDealSearch(dealSearch);
+
+        //this.props.actions.searchDeal(this.state.dealSearch);
     }
 
     toggleLogin = () => {
@@ -128,7 +128,7 @@ class App extends Component<Props, State> {
     }
 
     render() {
-        const {deals} = this.props;
+        const {deals, dealSearch} = this.props;
         const {loggedIn} = this.state;
         if (loggedIn === false) {
             return (
@@ -147,6 +147,7 @@ class App extends Component<Props, State> {
                                     component={() => (
                                         <Deals
                                             deals={deals}
+                                            dealSearch={dealSearch}
                                             {...this.state}
                                             {...this}
                                         />
@@ -184,8 +185,12 @@ const RightBlock = () => (
     />
 );
 
+const filterItems = (deals, dealSearch) =>
+    deals.filter((item) => item.name.includes(dealSearch));
+
 const mapStateToProps = (state: StateType) => ({
-    deals: state.dealReducer
+    deals: filterItems(state.dealReducer, state.dealSearchReducer),
+    dealSearch: state.dealSearchReducer
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -193,11 +198,11 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     //$FlowFixMe
     actions: bindActionCreators({
         reverseDeals,
-        searchDeal,
         getDeals,
         addDeal,
         deleteDeal,
-        editDeal
+        editDeal,
+        editDealSearch
     }, dispatch)
 });
 
