@@ -3,5 +3,6 @@ import type {Deals} from './Deals';
 
 export type State = {|
     dealReducer: Deals,
-    dealSearchReducer: string
+    dealSearchReducer: string,
+    dealOrderReducer: bool
 |}

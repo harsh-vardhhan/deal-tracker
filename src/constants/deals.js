@@ -6,3 +6,4 @@ export const DELETE_DEAL = 'DELETE_DEAL';
 export const EDIT_DEAL = 'EDIT_DEAL';
 export const SEARCH_DEAL = 'SEARCH_DEAL';
 export const EDIT_DEAL_SEARCH = 'EDIT_DEAL_SEARCH';
+export const TOGGLE_ORDER = 'TOGGLE_ORDER';

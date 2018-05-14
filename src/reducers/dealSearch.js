@@ -1,6 +1,6 @@
 //@flow
-import type {Action} from '../types/Action';
 import {EDIT_DEAL_SEARCH} from '../constants/deals';
+import type {Action} from '../types/Action';
 
 export const dealSearchReducer = (
     state: string = '',

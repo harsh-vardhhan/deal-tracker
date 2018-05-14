@@ -25,7 +25,7 @@ type Props = {
     setDealName: (string) => void,
     setDealAmount: (number) => void,
     setDealStage: (number) => void,
-    setDealSearch: (string) => Promise<any>
+    setDealSearch: (string) => void
 };
 
 const DealTableRoute = ({

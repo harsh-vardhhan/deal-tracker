@@ -10,9 +10,10 @@ import AppHeader from './../components/appHeader/appHeader';
 import SideMenu from './../components/sideMenu/sideMenu';
 import Deals from './../components/deals/deals';
 import Customers from './../components/customers/customers';
-import {getDeals, addDeal, deleteDeal, editDeal, reverseDeals} from '../actions/deal';
+import {getDeals, addDeal, deleteDeal, editDeal} from '../actions/deal';
 import {editDealSearch} from '../actions/dealSearch';
-import {filterDeals} from '../selectors/deals';
+import {toggleDealOrder} from '../actions/dealOrder';
+import {filterDeal} from '../selectors/deals';
 import type {
     GET_DEALS_ACTION,
     ADD_DEALS_ACTION,
@@ -115,10 +116,8 @@ class App extends Component<Props, State> {
         this.props.actions.editDeal(deal);
     }
 
-    setDealSearch = async (dealSearch) => {
-        await this.props.actions.editDealSearch(dealSearch);
-
-        //this.props.actions.searchDeal(this.state.dealSearch);
+    setDealSearch = (dealSearch) => {
+        this.props.actions.editDealSearch(dealSearch);
     }
 
     toggleLogin = () => {
@@ -126,7 +125,8 @@ class App extends Component<Props, State> {
     }
 
     reverseDealsAction = () => {
-        this.props.actions.reverseDeals(this.props.deals);
+        //$FlowFixMe
+        this.props.actions.toggleDealOrder();
     }
 
     render() {
@@ -188,7 +188,7 @@ const RightBlock = () => (
 );
 
 const mapStateToProps = (state: StateType) => ({
-    deals: filterDeals(state),
+    deals: filterDeal(state),
     dealSearch: state.dealSearchReducer
 });
 
@@ -196,12 +196,12 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
     //$FlowFixMe
     actions: bindActionCreators({
-        reverseDeals,
         getDeals,
         addDeal,
         deleteDeal,
         editDeal,
-        editDealSearch
+        editDealSearch,
+        toggleDealOrder
     }, dispatch)
 });
 

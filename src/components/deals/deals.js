@@ -25,7 +25,7 @@ type Props = {
     setDealAmount: (number) => void,
     setDealStage: (number) => void,
     setDealState: (DealType) => void,
-    setDealSearch: (string) => Promise<any>
+    setDealSearch: (string) => void
 };
 
 const Deals = ({
