@@ -9,7 +9,6 @@ import configureStore from './store/configureStore';
 //$FlowFixMe
 const store = configureStore();
 
-//$FlowFixMe
 ReactDOM.render(
     <Provider store={store}>
         <App/>

@@ -32,6 +32,7 @@ export type TOGGLE_ORDER_ACTION = {|
 |}
 
 export type Action =
+    | TOGGLE_ORDER_ACTION
     | EDIT_DEAL_SEARCH_ACTION
     | GET_DEALS_ACTION
     | ADD_DEALS_ACTION

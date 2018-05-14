@@ -19,7 +19,8 @@ import type {
     ADD_DEALS_ACTION,
     DELETE_DEAL_ACTION,
     EDIT_DEAL_ACTION,
-    EDIT_DEAL_SEARCH_ACTION
+    EDIT_DEAL_SEARCH_ACTION,
+    TOGGLE_ORDER_ACTION
 } from '../types/Action';
 import type {Deals as DealsType} from '../types/Deals';
 import type {Deal as DealType} from '../types/Deal';
@@ -33,7 +34,8 @@ type Props = {
         addDeal: (DealType) => ADD_DEALS_ACTION,
         deleteDeal: (DealType) => DELETE_DEAL_ACTION,
         editDeal: (DealType) => EDIT_DEAL_ACTION,
-        editDealSearch: (string) => EDIT_DEAL_SEARCH_ACTION
+        editDealSearch: (string) => EDIT_DEAL_SEARCH_ACTION,
+        toggleDealOrder: () => TOGGLE_ORDER_ACTION
     },
     deals: DealsType,
     dealSearch: string
@@ -125,7 +127,6 @@ class App extends Component<Props, State> {
     }
 
     reverseDealsAction = () => {
-        //$FlowFixMe
         this.props.actions.toggleDealOrder();
     }
 
