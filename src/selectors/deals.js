@@ -9,11 +9,9 @@ const dealOrderSelector = (state: State) => state.dealOrderReducer;
 export const filterDeal = createSelector(dealSelector, dealOrderSelector, dealNameSelector,
     (dealReducer, dealOrderReducer, dealSearchReducer) => {
         const filter = dealReducer.filter((item) => item.name.includes(dealSearchReducer));
-        let ordered = false;
-        if (ordered === dealOrderReducer) {
+        if (dealOrderReducer === false) {
             return filter;
         } else {
-            ordered = !ordered;
             return filter.slice().reverse();
         }
     }
