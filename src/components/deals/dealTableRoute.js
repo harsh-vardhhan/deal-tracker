@@ -28,6 +28,12 @@ type Props = {
     setDealSearch: (string) => void
 };
 
+type event = {
+    target: {
+        value: string
+    }
+}
+
 const DealTableRoute = ({
     addDealAction,
     reverseDealsAction,
@@ -72,7 +78,7 @@ const DealTableRoute = ({
                     placeHolder='Search Deals'
                     inline={true}
                     value={dealSearch}
-                    onDOMChange={(e) => setDealSearch(e.target.value)}
+                    onDOMChange={(e: event) => setDealSearch(e.target.value)}
                 />
                 <DealsForm
                     deal={deal}
