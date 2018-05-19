@@ -1,11 +1,11 @@
 //@flow
 import {GET_DEALS, ADD_DEAL, DELETE_DEAL, EDIT_DEAL} from '../constants/deals';
-import type {Action} from '../types/Action';
+import type {DealAction} from '../types/Action';
 import type {Deals} from '../types/Deals';
 
 export const dealReducer = (
     state: Deals = [],
-    action: Action
+    action: DealAction
 ) => {
     switch (action.type) {
     case GET_DEALS:

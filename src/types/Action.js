@@ -31,10 +31,13 @@ export type TOGGLE_ORDER_ACTION = {|
     type: 'TOGGLE_ORDER'
 |}
 
-export type Action =
-    | TOGGLE_ORDER_ACTION
-    | EDIT_DEAL_SEARCH_ACTION
+export type DealAction =
     | GET_DEALS_ACTION
     | ADD_DEALS_ACTION
     | DELETE_DEAL_ACTION
     | EDIT_DEAL_ACTION
+
+export type Action =
+    | TOGGLE_ORDER_ACTION
+    | EDIT_DEAL_SEARCH_ACTION
+    | DealAction
