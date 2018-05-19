@@ -3,10 +3,9 @@ import React from 'react';
 import Split from 'grommet/components/Split';
 import Box from 'grommet/components/Box';
 import Search from 'grommet/components/Search';
-import Meter from 'grommet/components/Meter';
-import Value from 'grommet/components/Value';
 import ActionButtons from './actionButton';
 import DealsForm from './dealsForm';
+import Dashboard from './dashboard';
 import DealTable from './dealTable';
 import type {Deals as DealsType} from './../../types/Deals';
 
@@ -93,65 +92,6 @@ const DealTableRoute = ({
                 </Box>
             </Split>
         </div>
-    );
-};
-
-const Dashboard = ({deals}) => {
-    const closed = deals.filter((value) => value.stage === 4).length;
-    const open = deals.filter((value) => value.stage !== 4).length;
-    const totalAmount = deals.reduce((a, b) => +a + +b.amount, 0);
-    return (
-        <Box
-            pad='medium'
-            direction='row'
-        >
-            <Meter
-                type='circle'
-                size='small'
-                max={deals.length}
-                label={
-                    <Value
-                        value={open}
-                        units='open'
-                        size='small'
-                    />}
-                value={open}
-            />
-            <Box
-                justify='center'
-                align='center'
-                pad='medium'
-            />
-            <Meter
-                type='circle'
-                size='small'
-                max={deals.length}
-                label={
-                    <Value
-                        value={closed}
-                        units='closed'
-                        size='small'
-                    />}
-                value={closed}
-            />
-            <Box
-                justify='center'
-                align='center'
-                pad='medium'
-            />
-            <Meter
-                type='circle'
-                size='small'
-                max={totalAmount}
-                label={
-                    <Value
-                        value={totalAmount}
-                        units='Worth'
-                        size='small'
-                    />}
-                value={totalAmount}
-            />
-        </Box>
     );
 };
 

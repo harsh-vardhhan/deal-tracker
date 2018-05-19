@@ -23,5 +23,17 @@ export const dealsMock = [
         name: 'Discount on Internet',
         amount: 16.25,
         stage: 2
+    },
+    {
+        _id: '4',
+        name: 'Discount on Mobile',
+        amount: 16.25,
+        stage: 4
+    },
+    {
+        _id: '5',
+        name: 'Discount on Internet',
+        amount: 16.25,
+        stage: 4
     }
 ];

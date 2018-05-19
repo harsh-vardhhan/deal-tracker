@@ -14,6 +14,7 @@ type DealTableType = {
 
 const DealTable = ({deals, dealRow, selectDeal, reverseDealsAction}: DealTableType) => (
     <Table
+        style={{height: 250, overflowX: 'scroll'}}
         selectable={true}
         onSelect={selectDeal}
         selected={dealRow}
