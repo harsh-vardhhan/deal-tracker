@@ -7,7 +7,7 @@ import type {Deals} from './../../types/Deals';
 
 type Props = {
     deals : Deals
-}
+};
 
 const Dashboard = ({deals}: Props) => {
     const closed = deals.filter((value) => value.stage === 4).length;
@@ -18,59 +18,85 @@ const Dashboard = ({deals}: Props) => {
             pad='xsmall'
             direction='row'
         >
-            <Box
-                justify='center'
-                align='center'
-                pad='large'
+            <OpenDeals
+                deals={deals}
+                open={open}
             />
-            <Meter
-                type='circle'
-                size='small'
-                max={deals.length}
-                label={
-                    <Value
-                        value={open}
-                        units='open'
-                        size='xsmall'
-                    />}
-                value={open}
+            <CloseDeals
+                deals={deals}
+                closed={closed}
             />
-            <Box
-                justify='center'
-                align='center'
-                pad='medium'
-            />
-            <Meter
-                type='circle'
-                size='small'
-                max={deals.length}
-                label={
-                    <Value
-                        value={closed}
-                        units='closed'
-                        size='xsmall'
-                    />}
-                value={closed}
-            />
-            <Box
-                justify='center'
-                align='center'
-                pad='medium'
-            />
-            <Meter
-                type='circle'
-                size='small'
-                max={totalAmount}
-                label={
-                    <Value
-                        value={totalAmount}
-                        units='Worth'
-                        size='xsmall'
-                    />}
-                value={totalAmount}
+            <DealsWorth
+                totalAmount={totalAmount}
             />
         </Box>
     );
 };
+
+const OpenDeals = ({deals, open}) => (
+    <div>
+        <Box
+            justify='center'
+            align='center'
+            pad='large'
+        />
+        <Meter
+            type='circle'
+            size='small'
+            max={deals.length}
+            label={
+                <Value
+                    value={open}
+                    units='open'
+                    size='xsmall'
+                />}
+            value={open}
+        />
+    </div>
+);
+
+const CloseDeals = ({deals, closed}) => (
+    <div>
+        <Box
+            justify='center'
+            align='center'
+            pad='medium'
+        />
+        <Meter
+            type='circle'
+            size='small'
+            max={deals.length}
+            label={
+                <Value
+                    value={closed}
+                    units='closed'
+                    size='xsmall'
+                />}
+            value={closed}
+        />
+    </div>
+);
+
+const DealsWorth = ({totalAmount}) => (
+    <div>
+        <Box
+            justify='center'
+            align='center'
+            pad='medium'
+        />
+        <Meter
+            type='circle'
+            size='small'
+            max={totalAmount}
+            label={
+                <Value
+                    value={totalAmount}
+                    units='Worth'
+                    size='xsmall'
+                />}
+            value={totalAmount}
+        />
+    </div>
+);
 
 export default Dashboard;
