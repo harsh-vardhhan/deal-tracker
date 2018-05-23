@@ -18,6 +18,7 @@ const Dashboard = ({deals}: Props) => {
             pad='xsmall'
             direction='row'
         >
+
             <OpenDeals
                 deals={deals}
                 open={open}
@@ -34,11 +35,24 @@ const Dashboard = ({deals}: Props) => {
 };
 
 const OpenDeals = ({deals, open}) => (
-    <div>
+    <Box
+        pad='xsmall'
+        direction='row'
+    >
         <Box
             justify='center'
             align='center'
-            pad='large'
+            pad='medium'
+        />
+        <Box
+            justify='center'
+            align='center'
+            pad='medium'
+        />
+        <Box
+            justify='center'
+            align='center'
+            pad='medium'
         />
         <Meter
             type='circle'
@@ -52,11 +66,14 @@ const OpenDeals = ({deals, open}) => (
                 />}
             value={open}
         />
-    </div>
+    </Box>
 );
 
 const CloseDeals = ({deals, closed}) => (
-    <div>
+    <Box
+        pad='xsmall'
+        direction='row'
+    >
         <Box
             justify='center'
             align='center'
@@ -74,11 +91,14 @@ const CloseDeals = ({deals, closed}) => (
                 />}
             value={closed}
         />
-    </div>
+    </Box>
 );
 
 const DealsWorth = ({totalAmount}) => (
-    <div>
+    <Box
+        pad='xsmall'
+        direction='row'
+    >
         <Box
             justify='center'
             align='center'
@@ -96,7 +116,7 @@ const DealsWorth = ({totalAmount}) => (
                 />}
             value={totalAmount}
         />
-    </div>
+    </Box>
 );
 
 export default Dashboard;
