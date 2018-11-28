@@ -6,8 +6,6 @@ import logger from 'redux-logger'
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import type { State } from '../types/State';
-import type { Store } from '../types/Store';
 
 const persistConfig = {
     key: 'root',
