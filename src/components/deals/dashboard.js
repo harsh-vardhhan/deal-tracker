@@ -15,7 +15,6 @@ const Dashboard = ({deals}: Props) => {
     const totalAmount = deals.reduce((a, b) => +a + +b.amount, 0);
     return (
         <Box
-            pad='xsmall'
             direction='row'
         >
 
@@ -36,7 +35,6 @@ const Dashboard = ({deals}: Props) => {
 
 const OpenDeals = ({deals, open}) => (
     <Box
-        pad='xsmall'
         direction='row'
     >
         <Box
@@ -71,7 +69,6 @@ const OpenDeals = ({deals, open}) => (
 
 const CloseDeals = ({deals, closed}) => (
     <Box
-        pad='xsmall'
         direction='row'
     >
         <Box
@@ -96,7 +93,6 @@ const CloseDeals = ({deals, closed}) => (
 
 const DealsWorth = ({totalAmount}) => (
     <Box
-        pad='xsmall'
         direction='row'
     >
         <Box

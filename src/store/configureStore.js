@@ -1,17 +1,25 @@
 //@flow
-import {createStore, applyMiddleware} from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
-import {composeWithDevTools} from 'redux-devtools-extension';
-import type {State} from '../types/State';
-import type {Store} from '../types/Store';
+import logger from 'redux-logger'
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+import type { State } from '../types/State';
+import type { Store } from '../types/Store';
 
-const configureStore = (initialState: State): Store => (
-    createStore(
-        rootReducer,
-        initialState,
-        composeWithDevTools(applyMiddleware(thunk))
-    )
-);
+const persistConfig = {
+    key: 'root',
+    storage
+};
 
-export default configureStore;
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = createStore(
+    persistedReducer,
+    undefined,
+    composeWithDevTools(applyMiddleware(thunk, logger))
+)
+
+export const persistor = persistStore(store);

@@ -1,10 +1,5 @@
 //@flow
-import {
-    getDealsData,
-    postDealData,
-    deleteDealData,
-    editDealData
-} from '../api/deal';
+import {getDealsMock} from '../api/deal';
 import {GET_DEALS, ADD_DEAL, DELETE_DEAL, EDIT_DEAL} from '../constants/deals';
 import type {Deal} from '../types/Deal';
 import type {Dispatch} from 'redux';
@@ -17,28 +12,25 @@ import type {
 
 export const getDeals = () => (
     async (dispatch: Dispatch<GET_DEALS_ACTION>) => {
-        const deals = await getDealsData();
+        const deals = await getDealsMock();
         dispatch({type: GET_DEALS, deals});
     }
 );
 
 export const addDeal = (deal: Deal) => (
     (dispatch: Dispatch<ADD_DEALS_ACTION>) => {
-        postDealData(deal);
         dispatch({type: ADD_DEAL, deal});
     }
 );
 
 export const deleteDeal = (deal: Deal) => (
     (dispatch: Dispatch<DELETE_DEAL_ACTION>) => {
-        deleteDealData(deal);
         dispatch({type: DELETE_DEAL, deal});
     }
 );
 
 export const editDeal = (deal: Deal) => (
     (dispatch: Dispatch<EDIT_DEAL_ACTION>) => {
-        editDealData(deal);
         dispatch({type: EDIT_DEAL, deal});
     }
 );
