@@ -1,23 +1,21 @@
 //@flow
-import { createStore, applyMiddleware } from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
-import logger from 'redux-logger'
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+import type {State} from '../types/State';
+import logger from 'redux-logger';
+import {composeWithDevTools} from 'redux-devtools-extension';
 
-const persistConfig = {
-    key: 'root',
-    storage
+const initalState: State = {
+    dealReducer: [],
+    dealSearchReducer: '',
+    dealOrderReducer: false
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 export const store = createStore(
-    persistedReducer,
-    undefined,
-    composeWithDevTools(applyMiddleware(thunk, logger))
-)
+    rootReducer,
+    initalState,
 
-export const persistor = persistStore(store);
+    //$FlowFixMe
+    composeWithDevTools(applyMiddleware(thunk, logger))
+);
