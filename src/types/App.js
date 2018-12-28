@@ -10,16 +10,27 @@ import type {
     TOGGLE_ORDER_ACTION
 } from './Action';
 
-export type Props = {
+export type AppType = {
     actions: {
-        reverseDeals: (DealsType) => void,
         getDeals: () => GET_DEALS_ACTION,
+        reverseDeals: (DealsType) => void,
         addDeal: (DealType) => ADD_DEALS_ACTION,
         deleteDeal: (DealType) => DELETE_DEAL_ACTION,
         editDeal: (DealType) => EDIT_DEAL_ACTION,
         editDealSearch: (string) => EDIT_DEAL_SEARCH_ACTION,
-        toggleDealOrder: () => TOGGLE_ORDER_ACTION
+        toggleDealOrder: () => TOGGLE_ORDER_ACTION,
     },
+    deals: DealsType,
+    dealSearch: string
+}
+
+export type Props = {
+    reverseDeals: (DealsType) => void,
+    addDeal: (DealType) => ADD_DEALS_ACTION,
+    deleteDeal: (DealType) => DELETE_DEAL_ACTION,
+    editDeal: (DealType) => EDIT_DEAL_ACTION,
+    editDealSearch: (string) => EDIT_DEAL_SEARCH_ACTION,
+    toggleDealOrder: () => TOGGLE_ORDER_ACTION,
     deals: DealsType,
     dealSearch: string
 };
